@@ -535,7 +535,7 @@ const API_BASE_URL = (() => {
     // Для продакшена - используем Render backend URL
     // Замените на ваш реальный URL после деплоя на Render
     // Например: 'https://portfolio-backend.onrender.com'
-    return process.env.RENDER_API_URL || 'https://portfolio-backend.onrender.com';
+    return process.env.RENDER_API_URL || 'https://portfolio-backend-db2d.onrender.com';
 })();
 
 console.log('🔗 API Base URL:', API_BASE_URL);
