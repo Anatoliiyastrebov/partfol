@@ -76,12 +76,22 @@ if (missingVars.length > 0) {
 // Устанавливаем API ключ SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// Проверяем, что EMAIL_FROM является verified sender в SendGrid
-// (SendGrid автоматически проверит это при отправке)
+// ВАЖНО: Для нормальной доставляемости писем (чтобы не попадали в спам)
+// обязательно нужна Domain Authentication в SendGrid (SPF/DKIM).
+// 
+// EMAIL_FROM должен быть на домене, который аутентифицирован в SendGrid.
+// Рекомендуется использовать адрес вида: contact@ваш-домен.com
+// 
+// Настройка Domain Authentication:
+// 1. SendGrid Dashboard → Settings → Sender Authentication → Domain Authentication
+// 2. Добавьте ваш домен и следуйте инструкциям по настройке DNS записей
+// 3. После верификации домена, все email адреса на этом домене автоматически verified
+//
+// Без Domain Authentication письма могут попадать в спам!
 console.log('✅ SendGrid настроен');
 console.log(`📧 Отправитель: ${process.env.EMAIL_FROM}`);
 console.log(`📬 Получатель: ${process.env.EMAIL_TO}`);
-console.log('⚠️  Убедитесь, что EMAIL_FROM является verified sender в SendGrid Dashboard');
+console.log('⚠️  Для нормальной доставляемости нужна Domain Authentication в SendGrid!');
 
 // ============================================
 // ВАЛИДАЦИЯ ДАННЫХ
@@ -183,12 +193,17 @@ app.post('/api/contact', async (req, res) => {
         console.log(`📝 Данные формы: имя="${cleanName}", email="${cleanEmail}"`);
 
         // Формируем содержимое письма для SendGrid
+        // Используем только plain text (без HTML) для лучшей доставляемости
+        // Текст письма нейтральный, без CAPS, без восклицательных знаков и маркетинговых слов
         const msg = {
             to: process.env.EMAIL_TO,
-            from: process.env.EMAIL_FROM, // Должен быть verified sender в SendGrid
-            subject: `Новое сообщение с сайта портфолио от ${cleanName}`,
+            // EMAIL_FROM должен быть на домене, который аутентифицирован в SendGrid (Domain Authentication)
+            // Рекомендуется использовать адрес вида: contact@ваш-домен.com
+            from: process.env.EMAIL_FROM,
+            subject: `Новое сообщение с сайта от ${cleanName}`,
+            // Отправляем только plain text для лучшей доставляемости (меньше вероятность попасть в спам)
             text: `
-Вы получили новое сообщение через форму обратной связи на вашем сайте.
+Новое сообщение через форму обратной связи на сайте.
 
 Имя отправителя: ${cleanName}
 Email отправителя: ${cleanEmail}
@@ -197,27 +212,8 @@ Email отправителя: ${cleanEmail}
 ${cleanMessage}
 
 ---
-Это автоматическое сообщение с сайта портфолио.
-            `.trim(),
-            html: `
-                <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-                    <h2 style="color: #6366f1;">Новое сообщение с сайта портфолио</h2>
-                    <p>Вы получили новое сообщение через форму обратной связи на вашем сайте.</p>
-                    
-                    <div style="background-color: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                        <p><strong>Имя отправителя:</strong> ${cleanName}</p>
-                        <p><strong>Email отправителя:</strong> <a href="mailto:${cleanEmail}">${cleanEmail}</a></p>
-                    </div>
-                    
-                    <div style="background-color: #ffffff; padding: 20px; border-left: 4px solid #6366f1; margin: 20px 0;">
-                        <h3 style="color: #333; margin-top: 0;">Сообщение:</h3>
-                        <p style="white-space: pre-wrap; color: #555;">${cleanMessage}</p>
-                    </div>
-                    
-                    <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
-                    <p style="color: #999; font-size: 12px;">Это автоматическое сообщение с сайта портфолио.</p>
-                </div>
-            `
+Автоматическое сообщение с сайта портфолио.
+            `.trim()
         };
 
         // Отправляем email через SendGrid
@@ -248,8 +244,9 @@ ${cleanMessage}
             if (error.response.body?.errors) {
                 error.response.body.errors.forEach(err => {
                     console.error(`   - ${err.message}`);
-                    if (err.message.includes('verified')) {
-                        console.error('   ⚠️  EMAIL_FROM должен быть verified sender в SendGrid Dashboard!');
+                    if (err.message.includes('verified') || err.message.includes('sender')) {
+                        console.error('   ⚠️  EMAIL_FROM должен быть на домене с Domain Authentication в SendGrid!');
+                        console.error('   💡 Настройте Domain Authentication: Settings → Sender Authentication → Domain Authentication');
                     }
                 });
             }
