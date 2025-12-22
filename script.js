@@ -614,10 +614,17 @@ async function sendContactForm(formData) {
 }
 
 // Form Submission
-const contactForm = document.querySelector('.contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
+// Ожидаем полной загрузки DOM перед добавлением обработчика
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        // Убеждаемся, что форма не имеет action (предотвращаем стандартную отправку)
+        contactForm.setAttribute('action', 'javascript:void(0);');
+        contactForm.setAttribute('method', 'post');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            e.stopPropagation();
         
         const button = contactForm.querySelector('button');
         const originalText = button.textContent;
