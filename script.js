@@ -774,7 +774,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 3000);
         }
     });
-}
+    }
+});
 
 // Mouse Cursor Effect (optional enhancement)
 let cursor = null;
