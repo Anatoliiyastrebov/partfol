@@ -530,12 +530,15 @@ window.addEventListener('scroll', () => {
 const API_BASE_URL = (() => {
     // Если работаем локально
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        // Проверяем порт из .env или используем дефолтный
         return 'http://localhost:3001';
     }
     // Для продакшена - замените на ваш URL
     // Пример: return 'https://your-backend.onrender.com';
     return 'http://localhost:3001'; // Временно, замените на продакшен URL
 })();
+
+console.log('🔗 API Base URL:', API_BASE_URL);
 
 // Функция отправки формы на backend
 async function sendContactForm(formData) {
@@ -546,8 +549,8 @@ async function sendContactForm(formData) {
             message: formData.message
         };
         
-        console.log('Отправка запроса на:', `${API_BASE_URL}/api/contact`);
-        console.log('Тело запроса:', requestBody);
+        console.log('📤 Отправка запроса на:', `${API_BASE_URL}/api/contact`);
+        console.log('📝 Тело запроса:', requestBody);
         
         const response = await fetch(`${API_BASE_URL}/api/contact`, {
             method: 'POST',
@@ -557,23 +560,52 @@ async function sendContactForm(formData) {
             body: JSON.stringify(requestBody)
         });
         
-        const data = await response.json();
-        console.log('Ответ сервера:', data);
+        console.log('📥 Статус ответа:', response.status);
+        
+        const data = await response.json().catch(() => {
+            console.error('❌ Не удалось распарсить ответ сервера');
+            throw new Error('Сервер вернул некорректный ответ');
+        });
+        
+        console.log('📦 Ответ сервера:', data);
         
         if (!response.ok) {
             // Ошибка от сервера
             const errorMessage = data.errors && data.errors.length > 0 
                 ? data.errors.join(', ') 
-                : (data.message || 'Ошибка отправки сообщения');
+                : (data.message || `Ошибка ${response.status}: ${response.statusText}`);
+            console.error('❌ Ошибка ответа:', errorMessage);
             throw new Error(errorMessage);
         }
         
+        if (!data.success) {
+            const errorMessage = data.message || 'Неизвестная ошибка';
+            console.error('❌ Сервер вернул ошибку:', errorMessage);
+            throw new Error(errorMessage);
+        }
+        
+        console.log('✅ Сообщение успешно отправлено!');
         return { success: true, data };
     } catch (error) {
-        console.error('Ошибка отправки формы:', error);
+        console.error('❌ Ошибка отправки формы:', error);
+        console.error('Детали ошибки:', {
+            message: error.message,
+            name: error.name,
+            stack: error.stack
+        });
+        
+        // Более информативные сообщения об ошибках
+        let errorMessage = error.message;
+        
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+            errorMessage = 'Не удалось подключиться к серверу. Убедитесь, что backend сервер запущен на порту 3001.';
+        } else if (error.message.includes('CORS')) {
+            errorMessage = 'Ошибка CORS. Проверьте настройки сервера.';
+        }
+        
         return { 
             success: false, 
-            message: error.message || 'Не удалось отправить сообщение. Проверьте, что backend сервер запущен.'
+            message: errorMessage || 'Не удалось отправить сообщение. Проверьте, что backend сервер запущен.'
         };
     }
 }
@@ -633,7 +665,18 @@ if (contactForm) {
         // Блокируем кнопку
         button.disabled = true;
         const sendingText = getTranslation('contact.form.sending', translations[currentLanguage]);
-        button.textContent = sendingText || 'Отправка...';
+        const btnText = button.querySelector('.btn-text');
+        const btnIcon = button.querySelector('.btn-icon');
+        
+        if (btnText) {
+            btnText.textContent = sendingText || 'Отправка...';
+        } else {
+            button.textContent = sendingText || 'Отправка...';
+        }
+        
+        if (btnIcon) {
+            btnIcon.textContent = '⏳';
+        }
         
         try {
             // Отправляем данные на backend
@@ -642,31 +685,70 @@ if (contactForm) {
             if (result.success) {
                 // Успешная отправка
                 const submittedText = getTranslation('contact.form.submitted', translations[currentLanguage]);
-                button.textContent = submittedText || 'Отправлено! ✓';
+                const btnText = button.querySelector('.btn-text');
+                const btnIcon = button.querySelector('.btn-icon');
+                
+                if (btnText) {
+                    btnText.textContent = submittedText || 'Отправлено! ✓';
+                } else {
+                    button.textContent = submittedText || 'Отправлено! ✓';
+                }
+                
+                if (btnIcon) {
+                    btnIcon.textContent = '✓';
+                }
+                
                 button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
                 
                 // Сбрасываем форму
                 contactForm.reset();
                 
-                // Возвращаем кнопку в исходное состояние через 3 секунды
+                // Восстанавливаем кнопку через 3 секунды
                 setTimeout(() => {
-                    const submitText = getTranslation('contact.form.submit', translations[currentLanguage]);
-                    button.textContent = submitText || 'Отправить';
-                    button.style.background = '';
                     button.disabled = false;
+                    if (btnText) {
+                        btnText.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
+                    } else {
+                        button.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
+                    }
+                    if (btnIcon) {
+                        btnIcon.textContent = '→';
+                    }
+                    button.style.background = '';
                 }, 3000);
             } else {
                 // Ошибка отправки
-                button.textContent = originalText;
+                console.error('❌ Ошибка отправки формы:', result.message);
+                const btnText = button.querySelector('.btn-text');
+                const btnIcon = button.querySelector('.btn-icon');
+                
+                if (btnText) {
+                    btnText.textContent = 'Ошибка';
+                } else {
+                    button.textContent = 'Ошибка';
+                }
+                
+                if (btnIcon) {
+                    btnIcon.textContent = '✕';
+                }
+                
                 button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
                 
                 const errorMsg = result.message || 'Ошибка отправки сообщения. Убедитесь, что backend сервер запущен.';
                 alert(errorMsg);
                 
                 setTimeout(() => {
-                    button.style.background = '';
                     button.disabled = false;
-                }, 3000);
+                    if (btnText) {
+                        btnText.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
+                    } else {
+                        button.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
+                    }
+                    if (btnIcon) {
+                        btnIcon.textContent = '→';
+                    }
+                    button.style.background = '';
+                }, 5000);
             }
         } catch (error) {
             console.error('Form submission error:', error);

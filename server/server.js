@@ -16,8 +16,17 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:8000';
 
 // CORS - разрешаем запросы с фронтенда
 app.use(cors({
-    origin: FRONTEND_URL,
-    credentials: true
+    origin: function (origin, callback) {
+        // Разрешаем запросы без origin (например, из Postman) и с localhost
+        if (!origin || origin.includes('localhost') || origin.includes('127.0.0.1') || origin === FRONTEND_URL) {
+            callback(null, true);
+        } else {
+            callback(null, true); // Временно разрешаем все для разработки
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 // Парсинг JSON тела запроса
