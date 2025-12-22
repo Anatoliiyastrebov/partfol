@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#6366f1">
+    <title data-i18n="meta.title">Портфолио</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-text">Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link" data-i18n="nav.home">Главная</a></li>
+                <li><a href="#about" class="nav-link" data-i18n="nav.about">О себе</a></li>
+                <li><a href="#skills" class="nav-link" data-i18n="nav.skills">Навыки</a></li>
+                <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Проекты</a></li>
+                <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Контакты</a></li>
+            </ul>
+            <div class="language-switcher">
+                <button class="lang-btn active" data-lang="ru">RU</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+                <button class="lang-btn" data-lang="de">DE</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-image">
+                <div class="hero-photo-wrapper">
+                    <div class="photo-container">
+                        <img src="images/photo.jpg" alt="Фото" class="hero-photo" onerror="this.style.display='none'; this.parentElement.nextElementSibling.style.display='flex';">
+                    </div>
+                    <div class="floating-card" style="display: none;">
+                        <div class="card-content">
+                            <div class="code-snippet">
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                                <div class="code-line"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="line-1" data-i18n="hero.greeting">Привет, я</span><br>
+                    <span class="line-2 typing-text"></span>
+                </h1>
+                <p class="hero-subtitle fade-in-up" data-i18n="hero.subtitle">Создаю впечатляющие веб-приложения с современными анимациями</p>
+                <div class="hero-buttons fade-in-up">
+                    <a href="#projects" class="btn btn-primary" data-i18n="hero.projectsBtn">Мои проекты</a>
+                    <a href="#contact" class="btn btn-secondary" data-i18n="hero.contactBtn">Связаться</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-i18n="about.title">О себе</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="fade-in" data-i18n="about.text1">Я увлеченный разработчик, который создает красивые и функциональные веб-приложения. Моя цель - объединить креативность и технологии для создания незабываемого пользовательского опыта.</p>
+                    <p class="fade-in" data-i18n="about.text2">Специализируюсь на создании современных интерфейсов с плавными анимациями и интерактивными элементами.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="50">0</div>
+                        <div class="stat-label" data-i18n="about.stats.projects">Проектов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="100">0</div>
+                        <div class="stat-label" data-i18n="about.stats.clients">Довольных клиентов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" data-target="5">0</div>
+                        <div class="stat-label" data-i18n="about.stats.experience">Лет опыта</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title" data-i18n="skills.title">Навыки</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">💻</div>
+                    <h3 data-i18n="skills.frontend.title">Frontend</h3>
+                    <p data-i18n="skills.frontend.desc">HTML, CSS, JavaScript, React, Vue</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🎨</div>
+                    <h3 data-i18n="skills.design.title">Дизайн</h3>
+                    <p data-i18n="skills.design.desc">UI/UX, Figma, Adobe XD</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">⚡</div>
+                    <h3 data-i18n="skills.animations.title">Анимации</h3>
+                    <p data-i18n="skills.animations.desc">CSS Animations, GSAP, Framer Motion</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">🚀</div>
+                    <h3 data-i18n="skills.backend.title">Backend</h3>
+                    <p data-i18n="skills.backend.desc">Node.js, Python, Databases</p>
+                    <div class="skill-bar">
+                        <div class="skill-progress" data-width="75"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-i18n="projects.title">Проекты</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" data-i18n="projects.view">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-i18n="projects.project1.title">E-Commerce Platform</h3>
+                        <p data-i18n="projects.project1.desc">Современная платформа для онлайн-торговли</p>
+                        <div class="project-tags">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" data-i18n="projects.view">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-i18n="projects.project2.title">Dashboard Analytics</h3>
+                        <p data-i18n="projects.project2.desc">Интерактивная панель аналитики</p>
+                        <div class="project-tags">
+                            <span>Vue.js</span>
+                            <span>D3.js</span>
+                            <span>TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <a href="#" class="project-link" data-i18n="projects.view">Посмотреть</a>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 data-i18n="projects.project3.title">Mobile App</h3>
+                        <p data-i18n="projects.project3.desc">Кроссплатформенное мобильное приложение</p>
+                        <div class="project-tags">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-i18n="contact.title">Связаться со мной</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon-wrapper">
+                            <div class="contact-icon">📧</div>
+                        </div>
+                        <div class="contact-details">
+                            <h3 data-i18n="contact.email.label">Email</h3>
+                            <p><a href="mailto:anatoliiyastrebov@gmail.com" class="contact-link">anatoliiyastrebov@gmail.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" data-i18n-placeholder="contact.form.name" placeholder="Ваше имя" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon">✉️</span>
+                            <input type="email" data-i18n-placeholder="contact.form.email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <span class="input-icon textarea-icon">💬</span>
+                            <textarea data-i18n-placeholder="contact.form.message" placeholder="Сообщение" rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary contact-submit-btn" data-i18n="contact.form.submit">
+                        <span class="btn-text">Отправить</span>
+                        <span class="btn-icon">→</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Portfolio. <span data-i18n="footer.rights">Все права защищены.</span></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
