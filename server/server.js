@@ -14,15 +14,31 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:8000';
 // MIDDLEWARE
 // ============================================
 
-// CORS - разрешаем запросы с фронтенда
+// CORS - разрешаем запросы с фронтенда (Vercel, localhost, и другие домены)
 app.use(cors({
     origin: function (origin, callback) {
-        // Разрешаем запросы без origin (например, из Postman) и с localhost
-        if (!origin || origin.includes('localhost') || origin.includes('127.0.0.1') || origin === FRONTEND_URL) {
-            callback(null, true);
-        } else {
-            callback(null, true); // Временно разрешаем все для разработки
+        // Разрешаем запросы без origin (например, из Postman, мобильные приложения)
+        if (!origin) {
+            return callback(null, true);
         }
+        
+        // Разрешаем localhost для разработки
+        if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+            return callback(null, true);
+        }
+        
+        // Разрешаем запросы с указанного FRONTEND_URL
+        if (origin === FRONTEND_URL) {
+            return callback(null, true);
+        }
+        
+        // Разрешаем запросы с Vercel доменов (для продакшена)
+        if (origin.includes('vercel.app') || origin.includes('vercel.com')) {
+            return callback(null, true);
+        }
+        
+        // Разрешаем все для гибкости (можно ограничить конкретными доменами)
+        callback(null, true);
     },
     credentials: true,
     methods: ['GET', 'POST', 'OPTIONS'],

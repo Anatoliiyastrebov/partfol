@@ -532,12 +532,13 @@ const API_BASE_URL = (() => {
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         return 'http://localhost:3001';
     }
-    // Для Vercel - используем относительный путь к API
-    // Vercel автоматически направит запрос к serverless function
-    return '';
+    // Для продакшена - используем Render backend URL
+    // Замените на ваш реальный URL после деплоя на Render
+    // Например: 'https://portfolio-backend.onrender.com'
+    return process.env.RENDER_API_URL || 'https://portfolio-backend.onrender.com';
 })();
 
-console.log('🔗 API Base URL:', API_BASE_URL || 'Относительный путь (/api)');
+console.log('🔗 API Base URL:', API_BASE_URL);
 
 // Функция отправки формы на backend
 async function sendContactForm(formData) {
@@ -548,10 +549,8 @@ async function sendContactForm(formData) {
             message: formData.message
         };
         
-        // Для Vercel используем /api/contact, для локального - полный URL
-        const apiUrl = API_BASE_URL 
-            ? `${API_BASE_URL}/api/contact` 
-            : '/api/contact';
+        // Формируем полный URL для API
+        const apiUrl = `${API_BASE_URL}/api/contact`;
         
         console.log('📤 Отправка запроса на:', apiUrl);
         console.log('📝 Тело запроса:', requestBody);
