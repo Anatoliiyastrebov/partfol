@@ -140,6 +140,21 @@ function validateContactForm(data) {
 // РОУТЫ
 // ============================================
 
+// Корневой роут
+app.get('/', (req, res) => {
+    res.json({
+        status: 'ok',
+        message: 'Portfolio Backend API',
+        version: '1.0.0',
+        endpoints: {
+            health: '/health',
+            contact: 'POST /api/contact'
+        },
+        timestamp: new Date().toISOString(),
+        uptime: process.uptime()
+    });
+});
+
 // Проверка здоровья сервера
 app.get('/health', (req, res) => {
     res.json({
