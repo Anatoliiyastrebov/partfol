@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import nodemailer from 'nodemailer';
+import sgMail from '@sendgrid/mail';
 
 // Загружаем переменные окружения из .env файла
 dotenv.config();
@@ -55,40 +55,33 @@ app.use((req, res, next) => {
 });
 
 // ============================================
-// НАСТРОЙКА NODEMAILER
+// НАСТРОЙКА SENDGRID
 // ============================================
 
 // Проверяем наличие обязательных переменных окружения
-const requiredEnvVars = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'EMAIL_TO'];
+const requiredEnvVars = ['SENDGRID_API_KEY', 'EMAIL_FROM', 'EMAIL_TO'];
 const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
 
 if (missingVars.length > 0) {
     console.error('❌ ОШИБКА: Отсутствуют обязательные переменные окружения:');
     missingVars.forEach(varName => console.error(`   - ${varName}`));
     console.error('\n📝 Создайте файл .env на основе .env.example и заполните все поля.');
+    console.error('\n💡 Необходимые переменные:');
+    console.error('   - SENDGRID_API_KEY: API ключ из SendGrid Dashboard');
+    console.error('   - EMAIL_FROM: Email адрес отправителя (должен быть verified в SendGrid)');
+    console.error('   - EMAIL_TO: Email адрес получателя');
     process.exit(1);
 }
 
-// Создаём транспорт для отправки email
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: parseInt(process.env.SMTP_PORT, 10),
-    secure: process.env.SMTP_PORT === '465', // true для порта 465, false для других портов
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-    }
-});
+// Устанавливаем API ключ SendGrid
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// Проверяем подключение к SMTP серверу при запуске
-transporter.verify((error, success) => {
-    if (error) {
-        console.error('❌ Ошибка подключения к SMTP серверу:', error.message);
-        console.error('💡 Проверьте правильность SMTP_HOST, SMTP_PORT, SMTP_USER и SMTP_PASS в .env');
-    } else {
-        console.log('✅ Подключение к SMTP серверу успешно установлено');
-    }
-});
+// Проверяем, что EMAIL_FROM является verified sender в SendGrid
+// (SendGrid автоматически проверит это при отправке)
+console.log('✅ SendGrid настроен');
+console.log(`📧 Отправитель: ${process.env.EMAIL_FROM}`);
+console.log(`📬 Получатель: ${process.env.EMAIL_TO}`);
+console.log('⚠️  Убедитесь, что EMAIL_FROM является verified sender в SendGrid Dashboard');
 
 // ============================================
 // ВАЛИДАЦИЯ ДАННЫХ
@@ -189,10 +182,10 @@ app.post('/api/contact', async (req, res) => {
 
         console.log(`📝 Данные формы: имя="${cleanName}", email="${cleanEmail}"`);
 
-        // Формируем содержимое письма
-        const mailOptions = {
-            from: `"Портфолио сайт" <${process.env.SMTP_USER}>`,
+        // Формируем содержимое письма для SendGrid
+        const msg = {
             to: process.env.EMAIL_TO,
+            from: process.env.EMAIL_FROM, // Должен быть verified sender в SendGrid
             subject: `Новое сообщение с сайта портфолио от ${cleanName}`,
             text: `
 Вы получили новое сообщение через форму обратной связи на вашем сайте.
@@ -227,24 +220,42 @@ ${cleanMessage}
             `
         };
 
-        // Отправляем email
-        console.log('📤 Отправка email...');
-        const info = await transporter.sendMail(mailOptions);
+        // Отправляем email через SendGrid
+        console.log('📤 Отправка email через SendGrid...');
+        const [response] = await sgMail.send(msg);
         
-        console.log('✅ Email успешно отправлен!');
-        console.log(`   Message ID: ${info.messageId}`);
+        console.log('✅ Email успешно отправлен через SendGrid!');
+        console.log(`   Status Code: ${response.statusCode}`);
         console.log(`   Получатель: ${process.env.EMAIL_TO}`);
+        console.log(`   Отправитель: ${process.env.EMAIL_FROM}`);
 
         // Успешный ответ
         res.status(200).json({
             success: true,
             message: 'Сообщение успешно отправлено',
-            messageId: info.messageId
+            statusCode: response.statusCode
         });
 
     } catch (error) {
-        console.error('❌ Ошибка при отправке email:', error.message);
-        console.error('   Детали:', error);
+        console.error('❌ Ошибка при отправке email через SendGrid:', error.message);
+        
+        // Более детальная обработка ошибок SendGrid
+        if (error.response) {
+            console.error('   Status Code:', error.response.statusCode);
+            console.error('   Body:', JSON.stringify(error.response.body, null, 2));
+            
+            // Проверяем типичные ошибки SendGrid
+            if (error.response.body?.errors) {
+                error.response.body.errors.forEach(err => {
+                    console.error(`   - ${err.message}`);
+                    if (err.message.includes('verified')) {
+                        console.error('   ⚠️  EMAIL_FROM должен быть verified sender в SendGrid Dashboard!');
+                    }
+                });
+            }
+        } else {
+            console.error('   Детали ошибки:', error);
+        }
 
         // Отправляем общий ответ об ошибке (не раскрываем детали для безопасности)
         res.status(500).json({
