@@ -1,16 +1,5 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "description": "Modern portfolio website",
-  "type": "module",
-  "scripts": {
-    "dev": "vercel dev",
-    "build": "echo 'No build step required'"
-  },
-  "dependencies": {
-    "nodemailer": "^6.9.7"
-  },
-  "engines": {
-    "node": "24.x"
-  }
+  "description": "Modern portfolio website - static frontend"
 }
