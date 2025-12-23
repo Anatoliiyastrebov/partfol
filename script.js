@@ -311,31 +311,78 @@ const translations = {
 // Структура проектов (объявлена здесь, чтобы быть доступной везде)
 const projectsData = [
     {
-        title: "Анкета по здоровью - Net Bolezny",
-        description: "Веб-приложение для сбора информации о здоровье пациентов. Многоязычный интерфейс с удобной формой заполнения.",
+        title: {
+            ru: "Анкета по здоровью - Net Bolezny",
+            en: "Health Questionnaire - Net Bolezny",
+            de: "Gesundheitsfragebogen - Net Bolezny"
+        },
+        description: {
+            ru: "Веб-приложение для сбора информации о здоровье пациентов. Многоязычный интерфейс с удобной формой заполнения.",
+            en: "Web application for collecting patient health information. Multilingual interface with a convenient form.",
+            de: "Webanwendung zur Erfassung von Gesundheitsinformationen von Patienten. Mehrsprachige Benutzeroberfläche mit einem benutzerfreundlichen Formular."
+        },
         techStack: ["HTML", "CSS", "JavaScript"],
         liveUrl: "https://net-bolezny.vercel.app/",
         githubUrl: null
     },
     {
-        title: "Анкета по здоровью - My Health Form",
-        description: "Интерактивная анкета для оценки состояния здоровья. Поддержка нескольких языков (RU/EN/DE) и адаптивный дизайн.",
+        title: {
+            ru: "Анкета по здоровью - My Health Form",
+            en: "Health Questionnaire - My Health Form",
+            de: "Gesundheitsfragebogen - My Health Form"
+        },
+        description: {
+            ru: "Интерактивная анкета для оценки состояния здоровья. Поддержка нескольких языков (RU/EN/DE) и адаптивный дизайн.",
+            en: "Interactive questionnaire for health assessment. Multi-language support (RU/EN/DE) and responsive design.",
+            de: "Interaktiver Fragebogen zur Gesundheitsbewertung. Mehrsprachige Unterstützung (RU/EN/DE) und responsives Design."
+        },
         techStack: ["HTML", "CSS", "JavaScript"],
         liveUrl: "https://myhealthform.vercel.app/",
         githubUrl: null
     },
     {
-        title: "Анкета по здоровью - Wellness Checkup",
-        description: "Веб-форма для комплексной оценки здоровья и самочувствия. Современный интерфейс с валидацией данных.",
+        title: {
+            ru: "Анкета по здоровью - Wellness Checkup",
+            en: "Health Questionnaire - Wellness Checkup",
+            de: "Gesundheitsfragebogen - Wellness Checkup"
+        },
+        description: {
+            ru: "Веб-форма для комплексной оценки здоровья и самочувствия. Современный интерфейс с валидацией данных.",
+            en: "Web form for comprehensive health and wellness assessment. Modern interface with data validation.",
+            de: "Webformular zur umfassenden Bewertung von Gesundheit und Wohlbefinden. Moderne Benutzeroberfläche mit Datenvalidierung."
+        },
         techStack: ["HTML", "CSS", "JavaScript"],
         liveUrl: "https://wellness-checkup.vercel.app/",
         githubUrl: null
     },
     {
-        title: "Анкета по здоровью - Ainur Sherbakova",
-        description: "Персональная анкета здоровья с многоязычной поддержкой. Разработана для медицинских консультаций и сбора данных.",
+        title: {
+            ru: "Анкета по здоровью - Ainur Sherbakova",
+            en: "Health Questionnaire - Ainur Sherbakova",
+            de: "Gesundheitsfragebogen - Ainur Sherbakova"
+        },
+        description: {
+            ru: "Персональная анкета здоровья с многоязычной поддержкой. Разработана для медицинских консультаций и сбора данных.",
+            en: "Personal health questionnaire with multilingual support. Designed for medical consultations and data collection.",
+            de: "Persönlicher Gesundheitsfragebogen mit mehrsprachiger Unterstützung. Entwickelt für medizinische Beratungen und Datenerfassung."
+        },
         techStack: ["HTML", "CSS", "JavaScript"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
+        githubUrl: null
+    },
+    {
+        title: {
+            ru: "Анкета по здоровью - My Wellness Tracking",
+            en: "Health Questionnaire - My Wellness Tracking",
+            de: "Gesundheitsfragebogen - My Wellness Tracking"
+        },
+        description: {
+            ru: "Веб-приложение для отслеживания состояния здоровья и велнеса. Удобный интерфейс для ведения личных медицинских записей.",
+            en: "Web application for tracking health and wellness. Convenient interface for maintaining personal medical records.",
+            de: "Webanwendung zur Verfolgung von Gesundheit und Wohlbefinden. Benutzerfreundliche Oberfläche zur Führung persönlicher medizinischer Aufzeichnungen."
+        },
+        techStack: ["HTML", "CSS", "JavaScript"],
+        liveUrl: "https://my-wellness-tracking.vercel.app/",
         githubUrl: null
     }
 ];
@@ -982,12 +1029,19 @@ function renderProjects() {
         return;
     }
     
+    // Получаем переводы для кнопок
+    const liveText = getTranslation('projects.live', translations[currentLanguage]) || 'Live версия';
+    const githubText = getTranslation('projects.github', translations[currentLanguage]) || 'GitHub';
+    
     container.innerHTML = projectsData.map((project, index) => {
+        const projectTitle = typeof project.title === 'object' ? project.title[currentLanguage] || project.title.ru : project.title;
+        const projectDescription = typeof project.description === 'object' ? project.description[currentLanguage] || project.description.ru : project.description;
+        
         const liveButton = project.liveUrl 
-            ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-live">Live версия</a>`
+            ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-live">${liveText}</a>`
             : '';
         const githubButton = project.githubUrl
-            ? `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-github">GitHub</a>`
+            ? `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-github">${githubText}</a>`
             : '';
         
         const buttons = liveButton || githubButton 
@@ -1000,8 +1054,8 @@ function renderProjects() {
                     ${buttons ? `<div class="project-overlay">${buttons}</div>` : ''}
                 </div>
                 <div class="project-info">
-                    <h3>${project.title}</h3>
-                    <p>${project.description}</p>
+                    <h3>${projectTitle}</h3>
+                    <p>${projectDescription}</p>
                     <div class="project-tags">
                         ${project.techStack.map(tech => `<span>${tech}</span>`).join('')}
                     </div>
