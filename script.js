@@ -308,6 +308,38 @@ const translations = {
     }
 };
 
+// Структура проектов (объявлена здесь, чтобы быть доступной везде)
+const projectsData = [
+    {
+        title: "Анкета по здоровью - Net Bolezny",
+        description: "Веб-приложение для сбора информации о здоровье пациентов. Многоязычный интерфейс с удобной формой заполнения.",
+        techStack: ["HTML", "CSS", "JavaScript"],
+        liveUrl: "https://net-bolezny.vercel.app/",
+        githubUrl: null
+    },
+    {
+        title: "Анкета по здоровью - My Health Form",
+        description: "Интерактивная анкета для оценки состояния здоровья. Поддержка нескольких языков (RU/EN/DE) и адаптивный дизайн.",
+        techStack: ["HTML", "CSS", "JavaScript"],
+        liveUrl: "https://myhealthform.vercel.app/",
+        githubUrl: null
+    },
+    {
+        title: "Анкета по здоровью - Wellness Checkup",
+        description: "Веб-форма для комплексной оценки здоровья и самочувствия. Современный интерфейс с валидацией данных.",
+        techStack: ["HTML", "CSS", "JavaScript"],
+        liveUrl: "https://wellness-checkup.vercel.app/",
+        githubUrl: null
+    },
+    {
+        title: "Анкета по здоровью - Ainur Sherbakova",
+        description: "Персональная анкета здоровья с многоязычной поддержкой. Разработана для медицинских консультаций и сбора данных.",
+        techStack: ["HTML", "CSS", "JavaScript"],
+        liveUrl: "https://ainur-sherbakova.vercel.app/",
+        githubUrl: null
+    }
+];
+
 // Get current language from localStorage or default to 'ru'
 let currentLanguage = localStorage.getItem('language') || 'ru';
 
@@ -919,38 +951,6 @@ rippleStyle.textContent = `
     }
 `;
 document.head.appendChild(rippleStyle);
-
-// Структура проектов
-const projectsData = [
-    {
-        title: "Анкета по здоровью - Net Bolezny",
-        description: "Веб-приложение для сбора информации о здоровье пациентов. Многоязычный интерфейс с удобной формой заполнения.",
-        techStack: ["HTML", "CSS", "JavaScript"],
-        liveUrl: "https://net-bolezny.vercel.app/",
-        githubUrl: null
-    },
-    {
-        title: "Анкета по здоровью - My Health Form",
-        description: "Интерактивная анкета для оценки состояния здоровья. Поддержка нескольких языков (RU/EN/DE) и адаптивный дизайн.",
-        techStack: ["HTML", "CSS", "JavaScript"],
-        liveUrl: "https://myhealthform.vercel.app/",
-        githubUrl: null
-    },
-    {
-        title: "Анкета по здоровью - Wellness Checkup",
-        description: "Веб-форма для комплексной оценки здоровья и самочувствия. Современный интерфейс с валидацией данных.",
-        techStack: ["HTML", "CSS", "JavaScript"],
-        liveUrl: "https://wellness-checkup.vercel.app/",
-        githubUrl: null
-    },
-    {
-        title: "Анкета по здоровью - Ainur Sherbakova",
-        description: "Персональная анкета здоровья с многоязычной поддержкой. Разработана для медицинских консультаций и сбора данных.",
-        techStack: ["HTML", "CSS", "JavaScript"],
-        liveUrl: "https://ainur-sherbakova.vercel.app/",
-        githubUrl: null
-    }
-];
 
 // Рендеринг проектов
 function renderProjects() {
