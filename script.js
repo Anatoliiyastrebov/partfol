@@ -767,77 +767,44 @@ const API_BASE_URL = (() => {
     return 'https://portfolio-backend-db2d.onrender.com';
 })();
 
-console.log('🔗 API Base URL:', API_BASE_URL);
-
-// Функция отправки формы на backend
+// Функция отправки формы на backend (оптимизированная)
 async function sendContactForm(formData) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 секунд timeout
+    
     try {
-        const requestBody = {
-            name: formData.name,
-            email: formData.email,
-            message: formData.message
-        };
-        
-        // Формируем полный URL для API
-        const apiUrl = `${API_BASE_URL}/api/contact`;
-        
-        console.log('📤 Отправка запроса на:', apiUrl);
-        console.log('📝 Тело запроса:', requestBody);
-        
-        const response = await fetch(apiUrl, {
+        const response = await fetch(`${API_BASE_URL}/api/contact`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: formData.name,
+                email: formData.email,
+                message: formData.message
+            }),
+            signal: controller.signal
         });
         
-        console.log('📥 Статус ответа:', response.status);
-        
-        const data = await response.json().catch(() => {
-            console.error('❌ Не удалось распарсить ответ сервера');
-            throw new Error('Сервер вернул некорректный ответ');
-        });
-        
-        console.log('📦 Ответ сервера:', data);
+        clearTimeout(timeoutId);
         
         if (!response.ok) {
-            // Ошибка от сервера
-            const errorMessage = data.errors && data.errors.length > 0 
-                ? data.errors.join(', ') 
-                : (data.message || `Ошибка ${response.status}: ${response.statusText}`);
-            console.error('❌ Ошибка ответа:', errorMessage);
-            throw new Error(errorMessage);
+            const data = await response.json().catch(() => ({}));
+            throw new Error(data.message || `Ошибка ${response.status}`);
         }
         
-        if (!data.success) {
-            const errorMessage = data.message || 'Неизвестная ошибка';
-            console.error('❌ Сервер вернул ошибку:', errorMessage);
-            throw new Error(errorMessage);
-        }
-        
-        console.log('✅ Сообщение успешно отправлено!');
-        return { success: true, data };
+        const data = await response.json();
+        return data.success ? { success: true, data } : { success: false, message: data.message || 'Ошибка отправки' };
     } catch (error) {
-        console.error('❌ Ошибка отправки формы:', error);
-        console.error('Детали ошибки:', {
-            message: error.message,
-            name: error.name,
-            stack: error.stack
-        });
+        clearTimeout(timeoutId);
         
-        // Более информативные сообщения об ошибках
-        let errorMessage = error.message;
-        
-        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-            errorMessage = 'Не удалось подключиться к серверу. Убедитесь, что backend сервер запущен на порту 3001.';
-        } else if (error.message.includes('CORS')) {
-            errorMessage = 'Ошибка CORS. Проверьте настройки сервера.';
+        if (error.name === 'AbortError') {
+            return { success: false, message: 'Превышено время ожидания. Попробуйте позже.' };
         }
         
         return { 
             success: false, 
-            message: errorMessage || 'Не удалось отправить сообщение. Проверьте, что backend сервер запущен.'
+            message: error.message.includes('Failed to fetch') 
+                ? 'Не удалось подключиться к серверу. Проверьте подключение к интернету.' 
+                : error.message 
         };
     }
 }
@@ -858,7 +825,6 @@ if (contactForm) {
         const messageTextarea = contactForm.querySelector('textarea');
         
         if (!nameInput || !emailInput || !messageTextarea) {
-            console.error('Не удалось найти поля формы');
             alert('Ошибка: поля формы не найдены');
             return;
         }
@@ -892,8 +858,6 @@ if (contactForm) {
             alert('Пожалуйста, введите корректный email адрес');
             return;
         }
-        
-        console.log('Отправка данных формы:', formData);
         
         // Блокируем кнопку
         button.disabled = true;
@@ -984,7 +948,7 @@ if (contactForm) {
                 }, 5000);
             }
         } catch (error) {
-            console.error('Form submission error:', error);
+            // Ошибка формы
             button.textContent = originalText;
             button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
             
@@ -1121,7 +1085,7 @@ document.head.appendChild(rippleStyle);
 function renderProjects() {
     const container = document.getElementById('projects-container');
     if (!container) {
-        console.warn('Projects container not found, retrying...');
+        // Projects container not found, retrying...
         // Повторная попытка через небольшую задержку
         setTimeout(renderProjects, 200);
         return;
