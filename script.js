@@ -1012,7 +1012,22 @@ const projectObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 // Инициализация проектов при загрузке
-document.addEventListener('DOMContentLoaded', () => {
+function initProjects() {
+    // Небольшая задержка, чтобы убедиться, что DOM готов
+    setTimeout(() => {
+        renderProjects();
+    }, 100);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initProjects);
+} else {
+    // DOM уже загружен
+    initProjects();
+}
+
+// Также вызываем после полной загрузки страницы
+window.addEventListener('load', () => {
     renderProjects();
 });
 
