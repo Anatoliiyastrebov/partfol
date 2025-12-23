@@ -222,8 +222,8 @@ const translations = {
                 sending: 'Sending...',
                 error: 'Sending error',
                 notConfigured: 'Form is not configured. Please configure config.js',
-                consent: 'Я согласен на обработку моих персональных данных в соответствии с <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.',
-                consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
+                consent: 'I agree to the processing of my personal data in accordance with the <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.',
+                consentError: 'Please agree to the processing of your data.'
             }
         },
         footer: {
@@ -338,7 +338,7 @@ const translations = {
                 sending: 'Wird gesendet...',
                 error: 'Sendefehler',
                 notConfigured: 'Formular ist nicht konfiguriert. Bitte konfigurieren Sie config.js',
-                consent: 'Я согласен на обработку моих персональных данных в соответствии с <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.',
+                consent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.',
                 consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
             }
         },
