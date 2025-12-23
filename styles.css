@@ -1363,16 +1363,32 @@ section {
     .hero-content {
         max-width: min(1200px, calc(100vw - 4rem));
         padding: 0 clamp(var(--spacing-sm), 3vw, var(--spacing-lg));
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+    
+    .hero-content > .hero-text {
+        grid-row: 1;
+        grid-column: 1;
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    .hero-content > .hero-image {
+        grid-row: 1;
+        grid-column: 2;
     }
     
     .hero-title {
         font-size: clamp(2.5rem, 4vw, 4rem);
-        padding: 0 var(--spacing-sm);
+        padding: 0;
+        text-align: left;
     }
     
     .hero-subtitle {
         font-size: clamp(1rem, 1.5vw, 1.25rem);
-        padding: 0 var(--spacing-md);
+        padding: 0;
+        text-align: left;
     }
     
     .line-1,
@@ -1382,6 +1398,11 @@ section {
         overflow-wrap: break-word;
         white-space: normal;
         max-width: 100%;
+        text-align: left;
+    }
+    
+    .hero-buttons {
+        justify-content: flex-start;
     }
 }
 
