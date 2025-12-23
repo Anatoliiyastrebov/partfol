@@ -422,17 +422,19 @@ function typeText() {
     
     if (!isDeleting && charIndex === currentText.length) {
         isDeleting = true;
-        setTimeout(typeText, 3000); // Увеличено с 2000 до 3000 - пауза перед удалением
+        setTimeout(typeText, 4000); // Увеличено до 4000 - пауза перед удалением для лучшей читаемости
         return;
     }
     
     if (isDeleting && charIndex === 0) {
         isDeleting = false;
         textIndex = (textIndex + 1) % texts.length;
+        setTimeout(typeText, 500); // Пауза перед началом нового текста
+        return;
     }
     
     // Замедлена скорость: удаление быстрее, печать медленнее для читаемости
-    const speed = isDeleting ? 40 : 150; // Увеличено с 100 до 150 для печати
+    const speed = isDeleting ? 50 : 200; // Увеличено до 200 для печати (было 150), удаление тоже замедлено до 50
     setTimeout(typeText, speed);
 }
 
