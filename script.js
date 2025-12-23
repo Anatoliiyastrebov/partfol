@@ -955,7 +955,12 @@ const projectsData = [
 // Рендеринг проектов
 function renderProjects() {
     const container = document.getElementById('projects-container');
-    if (!container) return;
+    if (!container) {
+        console.warn('Projects container not found, retrying...');
+        // Повторная попытка через небольшую задержку
+        setTimeout(renderProjects, 200);
+        return;
+    }
     
     if (projectsData.length === 0) {
         container.innerHTML = `
@@ -968,10 +973,10 @@ function renderProjects() {
     
     container.innerHTML = projectsData.map((project, index) => {
         const liveButton = project.liveUrl 
-            ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-live" data-i18n="projects.live">Live версия</a>`
+            ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-live">Live версия</a>`
             : '';
         const githubButton = project.githubUrl
-            ? `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-github" data-i18n="projects.github">GitHub</a>`
+            ? `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-github">GitHub</a>`
             : '';
         
         const buttons = liveButton || githubButton 
