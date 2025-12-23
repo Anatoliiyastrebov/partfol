@@ -30,7 +30,11 @@ const translations = {
             stats: {
                 projects: 'Проектов',
                 clients: 'Довольных клиентов',
-                experience: 'Лет опыта'
+                experience: {
+                    one: 'Год опыта',
+                    few: 'Года опыта',
+                    many: 'Лет опыта'
+                }
             }
         },
         skills: {
@@ -132,7 +136,10 @@ const translations = {
             stats: {
                 projects: 'Projects',
                 clients: 'Happy Clients',
-                experience: 'Years of Experience'
+                experience: {
+                    one: 'Year of Experience',
+                    many: 'Years of Experience'
+                }
             }
         },
         skills: {
@@ -234,7 +241,10 @@ const translations = {
             stats: {
                 projects: 'Projekte',
                 clients: 'Zufriedene Kunden',
-                experience: 'Jahre Erfahrung'
+                experience: {
+                    one: 'Jahr Erfahrung',
+                    many: 'Jahre Erfahrung'
+                }
             }
         },
         skills: {
@@ -464,9 +474,20 @@ function updateLanguage(lang) {
     // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        const translation = getTranslation(key, translations[lang]);
-        if (translation) {
-            element.textContent = translation;
+        const statLabel = element.getAttribute('data-stat-label');
+        
+        // Специальная обработка для метки опыта
+        if (statLabel === 'experience') {
+            const statNumber = document.querySelector('.stat-number[data-stat-type="experience"]');
+            if (statNumber) {
+                const number = parseInt(statNumber.getAttribute('data-target')) || parseInt(statNumber.textContent) || 0;
+                element.textContent = getExperienceText(number, lang);
+            }
+        } else {
+            const translation = getTranslation(key, translations[lang]);
+            if (translation) {
+                element.textContent = translation;
+            }
         }
     });
     
@@ -603,25 +624,94 @@ document.querySelectorAll('.fade-in, .fade-in-up, .section-title, .skill-card, .
     observer.observe(el);
 });
 
+// Функция для склонения слова "год" в русском языке
+function getRussianPluralForm(number) {
+    const mod10 = number % 10;
+    const mod100 = number % 100;
+    
+    if (mod100 >= 11 && mod100 <= 19) {
+        return 'many'; // 11-19 лет
+    }
+    if (mod10 === 1) {
+        return 'one'; // 1 год
+    }
+    if (mod10 >= 2 && mod10 <= 4) {
+        return 'few'; // 2, 3, 4 года
+    }
+    return 'many'; // 5, 6, 7, 8, 9, 0 лет
+}
+
+// Функция для получения правильной формы слова в зависимости от языка
+function getExperienceText(number, lang) {
+    const translations = {
+        ru: {
+            one: 'Год опыта',
+            few: 'Года опыта',
+            many: 'Лет опыта'
+        },
+        en: {
+            one: 'Year of Experience',
+            many: 'Years of Experience'
+        },
+        de: {
+            one: 'Jahr Erfahrung',
+            many: 'Jahre Erfahrung'
+        }
+    };
+    
+    const langTranslations = translations[lang] || translations.ru;
+    
+    if (lang === 'ru') {
+        const form = getRussianPluralForm(number);
+        return langTranslations[form];
+    } else if (lang === 'en' || lang === 'de') {
+        return number === 1 ? langTranslations.one : langTranslations.many;
+    }
+    
+    return langTranslations.many;
+}
+
 // Animated Counter for Stats
 const animateCounter = (element) => {
     const target = parseInt(element.getAttribute('data-target'));
+    const statType = element.getAttribute('data-stat-type');
     const duration = 2000;
     const increment = target / (duration / 16);
     let current = 0;
     
     const updateCounter = () => {
         current += increment;
+        const currentValue = Math.floor(current);
+        
         if (current < target) {
-            element.textContent = Math.floor(current);
+            element.textContent = currentValue;
             requestAnimationFrame(updateCounter);
+            
+            // Обновляем текст метки для опыта
+            if (statType === 'experience') {
+                updateExperienceLabel(currentValue);
+            }
         } else {
             element.textContent = target;
+            
+            // Финальное обновление текста метки
+            if (statType === 'experience') {
+                updateExperienceLabel(target);
+            }
         }
     };
     
     updateCounter();
 };
+
+// Функция для обновления текста метки опыта
+function updateExperienceLabel(number) {
+    const labelElement = document.querySelector('.stat-label[data-stat-label="experience"]');
+    if (labelElement) {
+        const lang = currentLanguage || 'ru';
+        labelElement.textContent = getExperienceText(number, lang);
+    }
+}
 
 // Observe stat numbers
 const statObserver = new IntersectionObserver((entries) => {
