@@ -343,6 +343,17 @@ const projectsData = [
 // Get current language from localStorage or default to 'ru'
 let currentLanguage = localStorage.getItem('language') || 'ru';
 
+// Smooth reveal animation for project cards (объявлен здесь, чтобы быть доступным для renderProjects)
+const projectObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+            setTimeout(() => {
+                entry.target.classList.add('visible');
+            }, index * 100);
+        }
+    });
+}, { threshold: 0.1 });
+
 // Typing Animation
 const typingText = document.querySelector('.typing-text');
 let texts = translations[currentLanguage].typing.texts;
@@ -1004,17 +1015,6 @@ function renderProjects() {
         projectObserver.observe(card);
     });
 }
-
-// Smooth reveal animation for project cards
-const projectObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, index * 100);
-        }
-    });
-}, { threshold: 0.1 });
 
 // Инициализация проектов при загрузке
 function initProjects() {
