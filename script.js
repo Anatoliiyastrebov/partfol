@@ -109,6 +109,7 @@ const translations = {
             }
         },
         footer: {
+            name: 'Анатолий Ястребов',
             rights: 'Все права защищены.',
             private: 'Это частный веб-сайт-портфолио. Для связи используйте форму обратной связи или email.',
             contact: 'Контакт:',
@@ -223,6 +224,7 @@ const translations = {
             }
         },
         footer: {
+            name: 'Anatolii Yastrebov',
             rights: 'All rights reserved.',
             private: 'This is a private portfolio website. For contact, please use the contact form or email.',
             contact: 'Contact:',
@@ -338,6 +340,7 @@ const translations = {
             }
         },
         footer: {
+            name: 'Anatolii Yastrebov',
             rights: 'Alle Rechte vorbehalten.',
             private: 'Dies ist eine private Portfolio-Website. Für Kontakt verwenden Sie bitte das Kontaktformular oder E-Mail.',
             contact: 'Kontakt:',
@@ -478,7 +481,7 @@ function typeText() {
     }
     
     // Замедлена скорость: удаление быстрее, печать медленнее для читаемости
-    const speed = isDeleting ? 50 : 200; // Увеличено до 200 для печати (было 150), удаление тоже замедлено до 50
+    const speed = isDeleting ? 80 : 300; // Увеличено до 300 для печати, удаление замедлено до 80
     setTimeout(typeText, speed);
 }
 
