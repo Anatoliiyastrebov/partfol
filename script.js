@@ -108,7 +108,11 @@ const translations = {
             }
         },
         footer: {
-            rights: 'Все права защищены.'
+            rights: 'Все права защищены.',
+            private: 'Это частный веб-сайт-портфолио. Для связи используйте форму обратной связи или email.',
+            contact: 'Контакт:',
+            location: '📍 Германия',
+            gdpr: 'Данные обрабатываются в соответствии с GDPR. Используя форму обратной связи, вы соглашаетесь с обработкой ваших данных.'
         }
     },
     en: {
@@ -218,7 +222,11 @@ const translations = {
             }
         },
         footer: {
-            rights: 'All rights reserved.'
+            rights: 'All rights reserved.',
+            private: 'This is a private portfolio website. For contact, please use the contact form or email.',
+            contact: 'Contact:',
+            location: '📍 Germany',
+            gdpr: 'Data is processed in accordance with GDPR. By using the contact form, you agree to the processing of your data.'
         }
     },
     de: {
@@ -328,7 +336,11 @@ const translations = {
             }
         },
         footer: {
-            rights: 'Alle Rechte vorbehalten.'
+            rights: 'Alle Rechte vorbehalten.',
+            private: 'Dies ist eine private Portfolio-Website. Für Kontakt verwenden Sie bitte das Kontaktformular oder E-Mail.',
+            contact: 'Kontakt:',
+            location: '📍 Deutschland',
+            gdpr: 'Daten werden gemäß DSGVO verarbeitet. Durch die Nutzung des Kontaktformulars stimmen Sie der Verarbeitung Ihrer Daten zu.'
         }
     }
 };
@@ -536,6 +548,19 @@ function updateLanguage(lang) {
             btn.classList.add('active');
         }
     });
+    
+    // Update footer translations
+    const footerElements = document.querySelectorAll('[data-i18n^="footer."]');
+    footerElements.forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = getTranslation(key, translations[lang]);
+        if (translation) {
+            element.textContent = translation;
+        }
+    });
+    
+    // Update current year
+    updateCurrentYear();
     
     // Update form submission text
     const submitBtn = document.querySelector('.contact-form button');
@@ -1051,7 +1076,16 @@ style.textContent = `
 document.head.appendChild(style);
 
 // Page Load Animation
+// Update current year in footer
+function updateCurrentYear() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
 window.addEventListener('load', () => {
+    updateCurrentYear();
     document.body.style.opacity = '0';
     setTimeout(() => {
         document.body.style.transition = 'opacity 0.5s ease';
@@ -1260,7 +1294,16 @@ if (document.readyState === 'loading') {
 }
 
 // Также вызываем после полной загрузки страницы
+// Update current year in footer
+function updateCurrentYear() {
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+    }
+}
+
 window.addEventListener('load', () => {
+    updateCurrentYear();
     renderProjects();
 });
 
