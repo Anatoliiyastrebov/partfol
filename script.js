@@ -201,6 +201,7 @@ const translations = {
         contact: {
             title: 'Get in Touch',
             description: 'Have a project or question? Write to me and I will reply as soon as possible. Ready to discuss your task and suggest a solution.',
+            gdpr: 'Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.',
             email: {
                 label: 'Email'
             },
@@ -212,6 +213,18 @@ const translations = {
                 label: 'GitHub',
                 value: 'github.com/username'
             },
+            form: {
+                name: 'Your Name',
+                email: 'Email',
+                message: 'Message',
+                submit: 'Send',
+                submitted: 'Sent! ✓',
+                sending: 'Sending...',
+                error: 'Sending error',
+                notConfigured: 'Form is not configured. Please configure config.js',
+                consent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.',
+                consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
+            }
         },
         footer: {
             name: 'Anatolii Yastrebov',
