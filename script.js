@@ -75,7 +75,8 @@ const translations = {
             view: 'Посмотреть',
             github: 'GitHub',
             live: 'Live версия',
-            noProjects: 'Проекты будут добавлены в ближайшее время'
+            noProjects: 'Проекты будут добавлены в ближайшее время',
+            techTitle: 'Используемые технологии:'
         },
         contact: {
             title: 'Связаться со мной',
@@ -180,7 +181,8 @@ const translations = {
             view: 'View',
             github: 'GitHub',
             live: 'Live version',
-            noProjects: 'Projects will be added soon'
+            noProjects: 'Projects will be added soon',
+            techTitle: 'Technologies used:'
         },
         contact: {
             title: 'Get in Touch',
@@ -285,7 +287,8 @@ const translations = {
             view: 'Ansehen',
             github: 'GitHub',
             live: 'Live-Version',
-            noProjects: 'Projekte werden in Kürze hinzugefügt'
+            noProjects: 'Projekte werden in Kürze hinzugefügt',
+            techTitle: 'Verwendete Technologien:'
         },
         contact: {
             title: 'Kontakt aufnehmen',
@@ -322,76 +325,76 @@ const translations = {
 const projectsData = [
     {
         title: {
-            ru: "Анкета по здоровью - Net Bolezny",
-            en: "Health Questionnaire - Net Bolezny",
-            de: "Gesundheitsfragebogen - Net Bolezny"
+            ru: "Net Bolezny",
+            en: "Net Bolezny",
+            de: "Net Bolezny"
         },
         description: {
-            ru: "Веб-приложение в котором я создал удобный и интуитивно понятный интерфейс веб-анкеты по здоровью. Обеспечил комфортный пользовательский путь и корректный сбор данных, уделяя внимание отзывчивости и UX.",
-            en: "Web application where I created a convenient and intuitive interface for a health questionnaire. Ensured a comfortable user journey and correct data collection, focusing on responsiveness and UX.",
-            de: "Webanwendung, in der ich eine benutzerfreundliche und intuitive Benutzeroberfläche für einen Gesundheitsfragebogen erstellt habe. Gewährleistete einen komfortablen Benutzerweg und korrekte Datenerfassung mit Fokus auf Reaktionsfähigkeit und UX."
+            ru: "Веб-приложение с удобным и интуитивно понятным интерфейсом для сбора медицинских данных. Реализовал комфортный пользовательский путь, валидацию форм и адаптивный дизайн для всех устройств.",
+            en: "Web application with a convenient and intuitive interface for collecting medical data. Implemented a comfortable user journey, form validation, and responsive design for all devices.",
+            de: "Webanwendung mit einer benutzerfreundlichen und intuitiven Benutzeroberfläche zur Erfassung medizinischer Daten. Implementierte einen komfortablen Benutzerweg, Formularvalidierung und responsives Design für alle Geräte."
         },
-        techStack: ["HTML", "CSS", "JavaScript"],
+        techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation"],
         liveUrl: "https://net-bolezny.vercel.app/",
         githubUrl: null
     },
     {
         title: {
-            ru: "Анкета по здоровью - My Health Form",
-            en: "Health Questionnaire - My Health Form",
-            de: "Gesundheitsfragebogen - My Health Form"
+            ru: "My Health Form",
+            en: "My Health Form",
+            de: "My Health Form"
         },
         description: {
-            ru: "Интерактивная анкета для оценки состояния здоровья. Поддержка нескольких языков (RU/EN/DE) и адаптивный дизайн.",
-            en: "Interactive questionnaire for health assessment. Multi-language support (RU/EN/DE) and responsive design.",
-            de: "Interaktiver Fragebogen zur Gesundheitsbewertung. Mehrsprachige Unterstützung (RU/EN/DE) und responsives Design."
+            ru: "Интерактивная веб-анкета с многоязычной поддержкой (RU/EN/DE). Разработал систему переключения языков, адаптивную верстку и оптимизированную структуру данных для эффективного сбора информации.",
+            en: "Interactive web questionnaire with multilingual support (RU/EN/DE). Developed a language switching system, adaptive layout, and optimized data structure for efficient information collection.",
+            de: "Interaktiver Web-Fragebogen mit mehrsprachiger Unterstützung (RU/EN/DE). Entwickelte ein Sprachumschaltsystem, adaptive Layouts und optimierte Datenstruktur für effiziente Informationserfassung."
         },
-        techStack: ["HTML", "CSS", "JavaScript"],
+        techStack: ["HTML5", "CSS3", "JavaScript", "i18n (Internationalization)", "Local Storage", "Responsive Design"],
         liveUrl: "https://myhealthform.vercel.app/",
         githubUrl: null
     },
     {
         title: {
-            ru: "Анкета по здоровью - Wellness Checkup",
-            en: "Health Questionnaire - Wellness Checkup",
-            de: "Gesundheitsfragebogen - Wellness Checkup"
+            ru: "Wellness Checkup",
+            en: "Wellness Checkup",
+            de: "Wellness Checkup"
         },
         description: {
-            ru: "Веб-форма для комплексной оценки здоровья и самочувствия. Современный интерфейс с валидацией данных.",
-            en: "Web form for comprehensive health and wellness assessment. Modern interface with data validation.",
-            de: "Webformular zur umfassenden Bewertung von Gesundheit und Wohlbefinden. Moderne Benutzeroberfläche mit Datenvalidierung."
+            ru: "Комплексная система оценки здоровья с многоуровневой валидацией данных. Создал структурированную форму с логической последовательностью вопросов и визуальной обратной связью для пользователя.",
+            en: "Comprehensive health assessment system with multi-level data validation. Created a structured form with logical question sequence and visual feedback for users.",
+            de: "Umfassendes Gesundheitsbewertungssystem mit mehrstufiger Datenvalidierung. Erstellte ein strukturiertes Formular mit logischer Fragensequenz und visuellem Feedback für Benutzer."
         },
-        techStack: ["HTML", "CSS", "JavaScript"],
+        techStack: ["HTML5", "CSS3", "JavaScript", "Form Validation", "Data Processing", "UX/UI Design"],
         liveUrl: "https://wellness-checkup.vercel.app/",
         githubUrl: null
     },
     {
         title: {
-            ru: "Анкета по здоровью - Ainur Sherbakova",
-            en: "Health Questionnaire - Ainur Sherbakova",
-            de: "Gesundheitsfragebogen - Ainur Sherbakova"
+            ru: "Ainur Sherbakova",
+            en: "Ainur Sherbakova",
+            de: "Ainur Sherbakova"
         },
         description: {
-            ru: "Персональная анкета здоровья с многоязычной поддержкой. Разработана для медицинских консультаций и сбора данных.",
-            en: "Personal health questionnaire with multilingual support. Designed for medical consultations and data collection.",
-            de: "Persönlicher Gesundheitsfragebogen mit mehrsprachiger Unterstützung. Entwickelt für medizinische Beratungen und Datenerfassung."
+            ru: "Персональная медицинская анкета с кастомным дизайном. Реализовал персонализированный интерфейс, систему сохранения данных и оптимизированную структуру для медицинских консультаций.",
+            en: "Personal medical questionnaire with custom design. Implemented a personalized interface, data saving system, and optimized structure for medical consultations.",
+            de: "Persönlicher medizinischer Fragebogen mit individuellem Design. Implementierte eine personalisierte Benutzeroberfläche, Datenspeichersystem und optimierte Struktur für medizinische Beratungen."
         },
-        techStack: ["HTML", "CSS", "JavaScript"],
+        techStack: ["HTML5", "CSS3", "JavaScript", "Custom Styling", "Data Persistence", "Medical Forms"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
         githubUrl: null
     },
     {
         title: {
-            ru: "Анкета по здоровью - My Wellness Tracking",
-            en: "Health Questionnaire - My Wellness Tracking",
-            de: "Gesundheitsfragebogen - My Wellness Tracking"
+            ru: "My Wellness Tracking",
+            en: "My Wellness Tracking",
+            de: "My Wellness Tracking"
         },
         description: {
-            ru: "Веб-приложение для отслеживания состояния здоровья и велнеса. Удобный интерфейс для ведения личных медицинских записей.",
-            en: "Web application for tracking health and wellness. Convenient interface for maintaining personal medical records.",
-            de: "Webanwendung zur Verfolgung von Gesundheit und Wohlbefinden. Benutzerfreundliche Oberfläche zur Führung persönlicher medizinischer Aufzeichnungen."
+            ru: "Веб-приложение для отслеживания показателей здоровья с возможностью ведения истории записей. Разработал систему хранения данных, визуализацию информации и удобный интерфейс для регулярного мониторинга.",
+            en: "Web application for tracking health indicators with the ability to maintain a history of records. Developed a data storage system, information visualization, and convenient interface for regular monitoring.",
+            de: "Webanwendung zur Verfolgung von Gesundheitsindikatoren mit der Möglichkeit, einen Verlauf von Aufzeichnungen zu führen. Entwickelte ein Datenspeichersystem, Informationsvisualisierung und benutzerfreundliche Oberfläche für regelmäßige Überwachung."
         },
-        techStack: ["HTML", "CSS", "JavaScript"],
+        techStack: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Data Visualization", "Tracking Systems"],
         liveUrl: "https://my-wellness-tracking.vercel.app/",
         githubUrl: null
     }
@@ -1119,6 +1122,8 @@ function renderProjects() {
             ? `<div class="project-buttons">${liveButton}${githubButton}</div>`
             : '';
         
+        const techTitle = getTranslation('projects.techTitle', translations[currentLanguage]) || 'Используемые технологии:';
+        
         return `
             <div class="project-card" data-index="${index}">
                 <div class="project-image" style="background: linear-gradient(135deg, var(--primary), var(--accent));">
@@ -1127,8 +1132,11 @@ function renderProjects() {
                 <div class="project-info">
                     <h3>${projectTitle}</h3>
                     <p>${projectDescription}</p>
-                    <div class="project-tags">
-                        ${project.techStack.map(tech => `<span>${tech}</span>`).join('')}
+                    <div class="project-tech-section">
+                        <h4 class="project-tech-title">${techTitle}</h4>
+                        <div class="project-tags">
+                            ${project.techStack.map(tech => `<span>${tech}</span>`).join('')}
+                        </div>
                     </div>
                 </div>
             </div>
