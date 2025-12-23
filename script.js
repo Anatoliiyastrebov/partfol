@@ -2,7 +2,7 @@
 const translations = {
     ru: {
         meta: {
-            title: 'Портфолио'
+            title: 'AY - Портфолио'
         },
         nav: {
             home: 'Главная',
