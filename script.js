@@ -337,7 +337,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation"],
         liveUrl: "https://net-bolezny.vercel.app/",
         githubUrl: null,
-        image: "https://screenshot.rocks/api/screenshot?url=https://net-bolezny.vercel.app/&width=1280&height=720"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://net-bolezny.vercel.app/&viewport_width=1280&viewport_height=720&format=png&image_quality=80"
     },
     {
         title: {
@@ -353,7 +353,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "i18n (Internationalization)", "Local Storage", "Responsive Design"],
         liveUrl: "https://myhealthform.vercel.app/",
         githubUrl: null,
-        image: "https://screenshot.rocks/api/screenshot?url=https://myhealthform.vercel.app/&width=1280&height=720"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://myhealthform.vercel.app/&viewport_width=1280&viewport_height=720&format=png&image_quality=80"
     },
     {
         title: {
@@ -369,7 +369,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Form Validation", "Data Processing", "UX/UI Design"],
         liveUrl: "https://wellness-checkup.vercel.app/",
         githubUrl: null,
-        image: "https://screenshot.rocks/api/screenshot?url=https://wellness-checkup.vercel.app/&width=1280&height=720"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://wellness-checkup.vercel.app/&viewport_width=1280&viewport_height=720&format=png&image_quality=80"
     },
     {
         title: {
@@ -385,7 +385,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Custom Styling", "Data Persistence", "Medical Forms"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
         githubUrl: null,
-        image: "https://screenshot.rocks/api/screenshot?url=https://ainur-sherbakova.vercel.app/&width=1280&height=720"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://ainur-sherbakova.vercel.app/&viewport_width=1280&viewport_height=720&format=png&image_quality=80"
     },
     {
         title: {
@@ -401,7 +401,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Data Visualization", "Tracking Systems"],
         liveUrl: "https://my-wellness-tracking.vercel.app/",
         githubUrl: null,
-        image: "https://screenshot.rocks/api/screenshot?url=https://my-wellness-tracking.vercel.app/&width=1280&height=720"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://my-wellness-tracking.vercel.app/&viewport_width=1280&viewport_height=720&format=png&image_quality=80"
     }
 ];
 
