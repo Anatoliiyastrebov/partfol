@@ -472,16 +472,18 @@ window.translations = translations;
 // Get current language from localStorage or default to 'ru'
 let currentLanguage = localStorage.getItem('language') || 'ru';
 
-// Smooth reveal animation for project cards (объявлен здесь, чтобы быть доступным для renderProjects)
+// Оптимизированный IntersectionObserver для карточек проектов
 const projectObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
+    entries.forEach((entry) => {
         if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, index * 100);
+            entry.target.classList.add('visible');
+            projectObserver.unobserve(entry.target); // Отключаем после показа
         }
     });
-}, { threshold: 0.1 });
+}, {
+    threshold: 0.05,
+    rootMargin: '50px'
+});
 
 // Typing Animation
 const typingText = document.querySelector('.typing-text');
