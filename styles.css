@@ -1101,7 +1101,66 @@ section {
     background-repeat: no-repeat;
 }
 
-/* Размытие для фонового изображения */
+/* Анимированный градиентный эффект */
+.project-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(99, 102, 241, 0.8),
+        rgba(236, 72, 153, 0.8),
+        rgba(59, 130, 246, 0.8),
+        rgba(139, 92, 246, 0.8)
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    z-index: 0;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Дополнительный эффект с частицами */
+.project-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    animation: particleFloat 12s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.1);
+        opacity: 0.6;
+    }
+}
+
+/* Эффект для изображений (если будут добавлены в будущем) */
 .project-image.has-image {
     position: relative;
     background-size: cover !important;
@@ -1131,7 +1190,7 @@ section {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3));
-    z-index: 1;
+    z-index: 2;
     backdrop-filter: blur(1px);
 }
 

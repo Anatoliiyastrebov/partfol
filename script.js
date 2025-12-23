@@ -349,7 +349,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation"],
         liveUrl: "https://net-bolezny.vercel.app/",
         githubUrl: null,
-        image: "images/projects/net-bolezny.png"
+        image: null
     },
     {
         title: {
@@ -365,7 +365,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "i18n (Internationalization)", "Local Storage", "Responsive Design"],
         liveUrl: "https://myhealthform.vercel.app/",
         githubUrl: null,
-        image: "images/projects/myhealthform.png"
+        image: null
     },
     {
         title: {
@@ -381,7 +381,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Form Validation", "Data Processing", "UX/UI Design"],
         liveUrl: "https://wellness-checkup.vercel.app/",
         githubUrl: null,
-        image: "images/projects/wellness-checkup.png"
+        image: null
     },
     {
         title: {
@@ -397,7 +397,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Custom Styling", "Data Persistence", "Medical Forms"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
         githubUrl: null,
-        image: "images/projects/ainur-sherbakova.png"
+        image: null
     },
     {
         title: {
@@ -413,7 +413,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Data Visualization", "Tracking Systems"],
         liveUrl: "https://my-wellness-tracking.vercel.app/",
         githubUrl: null,
-        image: "images/projects/my-wellness-tracking.png"
+        image: null
     }
 ];
 
@@ -1169,7 +1169,7 @@ function renderProjects() {
         return `
             <div class="project-card" data-index="${index}">
                 <div class="project-image ${hasImage ? 'has-image' : ''}" style="${imageStyle}">
-                    <div class="project-image-overlay"></div>
+                    ${hasImage ? '<div class="project-image-overlay"></div>' : ''}
                     ${buttons ? `<div class="project-overlay">${buttons}</div>` : ''}
                 </div>
                 <div class="project-info">
