@@ -1,4 +1,4 @@
-// Translations
+// Translations - make available globally for project.js
 const translations = {
     ru: {
         meta: {
@@ -354,42 +354,60 @@ const translations = {
 // Структура проектов (объявлена здесь, чтобы быть доступной везде)
 const projectsData = [
     {
+        id: "net-bolezny",
         title: {
             ru: "Net Bolezny",
             en: "Net Bolezny",
             de: "Net Bolezny"
         },
-        description: {
-            ru: "Веб-приложение с удобным и интуитивно понятным интерфейсом для сбора медицинских данных. Реализовал комфортный пользовательский путь, валидацию форм и адаптивный дизайн для всех устройств.",
-            en: "Web application with a convenient and intuitive interface for collecting medical data. Implemented a comfortable user journey, form validation, and responsive design for all devices.",
-            de: "Webanwendung mit einer benutzerfreundlichen und intuitiven Benutzeroberfläche zur Erfassung medizinischer Daten. Implementierte einen komfortablen Benutzerweg, Formularvalidierung und responsives Design für alle Geräte."
+        shortDescription: {
+            ru: "Веб-форма для опроса состояния здоровья с интуитивным интерфейсом и адаптивным дизайном. Ориентирована на простоту использования и удобство заполнения.",
+            en: "Web form for health status survey with intuitive interface and adaptive design. Focused on ease of use and convenient filling.",
+            de: "Webformular für Gesundheitsumfrage mit intuitiver Benutzeroberfläche und adaptivem Design. Fokus auf Benutzerfreundlichkeit und bequemes Ausfüllen."
         },
-        techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation"],
+        description: {
+            ru: `🧠 <strong>О проекте</strong><br><br>Net-Bolezny — это веб-форма для опроса состояния здоровья, разработанная для удобного сбора информации о самочувствии пользователя. Приложение ориентировано на интуитивный пользовательский опыт и современный интерфейс с акцентом на простоту и адаптивность.<br><br>⸻<br><br>🎯 <strong>Цель проекта</strong><br><br>Создать лёгкое и удобное веб-приложение с формой опроса, которое:<br>• позволяет пользователю быстро и понятно заполнить анкету о здоровье;<br>• работает на любых устройствах (адаптивно);<br>• служит основой для возможной интеграции с backend-логикой.<br><br>⸻<br><br>🛠 <strong>Моя роль и вклад</strong><br><br>В этом проекте я отвечал за:<br><br><strong>🧩 Проектирование интерфейса</strong><br>• Продумал структуру вопросов и порядок заполнения, чтобы пользователь не запутался и мог с лёгкостью пройти весь опрос.<br><br><strong>💡 Реализация frontend-части</strong><br>• Создал отзывчивый, лёгкий и понятный интерфейс формы;<br>• Обеспечил валидацию вводимых данных (проверка заполнения обязательных полей);<br>• Организовал логическую навигацию между шагами анкеты (если есть пошаговый ввод);<br>• Закладывал архитектуру так, чтобы форму можно было легко подключить к backend-обработке.<br><br><strong>🧰 Использованные технологии</strong><br>• HTML/CSS — адаптивная верстка и стили, подходящие для разных экранов;<br>• JavaScript / (React/Next.js) — логика управления состоянием формы, валидация и интерактивность;<br>• Responsive Design — интерфейс одинаково удобен на телефонах, планшетах и ПК.`,
+            en: `🧠 <strong>About the project</strong><br><br>Net-Bolezny is a web form for health status survey, designed for convenient collection of information about user's well-being. The application is focused on intuitive user experience and modern interface with emphasis on simplicity and adaptability.<br><br>⸻<br><br>🎯 <strong>Project goal</strong><br><br>Create a lightweight and convenient web application with a survey form that:<br>• allows users to quickly and clearly fill out a health questionnaire;<br>• works on any devices (responsive);<br>• serves as a foundation for possible integration with backend logic.<br><br>⸻<br><br>🛠 <strong>My role and contribution</strong><br><br>In this project I was responsible for:<br><br><strong>🧩 Interface design</strong><br>• Designed the structure of questions and filling order so that users don't get confused and can easily complete the entire survey.<br><br><strong>💡 Frontend implementation</strong><br>• Created a responsive, lightweight and clear form interface;<br>• Ensured input data validation (checking required fields);<br>• Organized logical navigation between survey steps (if there is step-by-step input);<br>• Built architecture so that the form can be easily connected to backend processing.<br><br><strong>🧰 Technologies used</strong><br>• HTML/CSS — adaptive layout and styles suitable for different screens;<br>• JavaScript / (React/Next.js) — form state management logic, validation and interactivity;<br>• Responsive Design — the interface is equally convenient on phones, tablets and PCs.`,
+            de: `🧠 <strong>Über das Projekt</strong><br><br>Net-Bolezny ist ein Webformular für eine Gesundheitsumfrage, entwickelt für die bequeme Erfassung von Informationen über das Wohlbefinden des Benutzers. Die Anwendung konzentriert sich auf intuitive Benutzererfahrung und moderne Benutzeroberfläche mit Schwerpunkt auf Einfachheit und Anpassungsfähigkeit.<br><br>⸻<br><br>🎯 <strong>Projektziel</strong><br><br>Erstellen Sie eine leichte und bequeme Webanwendung mit einem Umfrageformular, die:<br>• es Benutzern ermöglicht, schnell und klar einen Gesundheitsfragebogen auszufüllen;<br>• auf allen Geräten funktioniert (responsiv);<br>• als Grundlage für eine mögliche Integration mit Backend-Logik dient.<br><br>⸻<br><br>🛠 <strong>Meine Rolle und Beitrag</strong><br><br>In diesem Projekt war ich verantwortlich für:<br><br><strong>🧩 Interface-Design</strong><br>• Entwickelte die Struktur der Fragen und die Reihenfolge der Ausfüllung, damit Benutzer nicht verwirrt werden und die gesamte Umfrage leicht abschließen können.<br><br><strong>💡 Frontend-Implementierung</strong><br>• Erstellte eine responsive, leichte und klare Formularoberfläche;<br>• Gewährleistete Validierung der Eingabedaten (Überprüfung der Pflichtfelder);<br>• Organisierte logische Navigation zwischen Umfrageschritten (falls es schrittweise Eingabe gibt);<br>• Baute Architektur auf, damit das Formular leicht mit Backend-Verarbeitung verbunden werden kann.<br><br><strong>🧰 Verwendete Technologien</strong><br>• HTML/CSS — adaptive Layouts und Styles für verschiedene Bildschirme;<br>• JavaScript / (React/Next.js) — Formularzustandsverwaltungslogik, Validierung und Interaktivität;<br>• Responsive Design — die Benutzeroberfläche ist gleichermaßen bequem auf Telefonen, Tablets und PCs.`
+        },
+        techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation", "UX/UI Design"],
         liveUrl: "https://net-bolezny.vercel.app/",
         githubUrl: null,
         image: null
     },
     {
+        id: "my-health-form",
         title: {
             ru: "My Health Form",
             en: "My Health Form",
             de: "My Health Form"
         },
-        description: {
-            ru: "Интерактивная веб-анкета с многоязычной поддержкой (RU/EN/DE). Разработал систему переключения языков, адаптивную верстку и оптимизированную структуру данных для эффективного сбора информации.",
-            en: "Interactive web questionnaire with multilingual support (RU/EN/DE). Developed a language switching system, adaptive layout, and optimized data structure for efficient information collection.",
-            de: "Interaktiver Web-Fragebogen mit mehrsprachiger Unterstützung (RU/EN/DE). Entwickelte ein Sprachumschaltsystem, adaptive Layouts und optimierte Datenstruktur für effiziente Informationserfassung."
+        shortDescription: {
+            ru: "Веб-приложение с адаптивной формой для сбора информации о состоянии здоровья пользователя. Проект ориентирован на удобство ввода данных и приятный пользовательский опыт.",
+            en: "Web application with an adaptive form for collecting user health information. The project focuses on data entry convenience and a pleasant user experience.",
+            de: "Webanwendung mit einem adaptiven Formular zur Erfassung von Gesundheitsinformationen des Benutzers. Das Projekt konzentriert sich auf die Bequemlichkeit der Dateneingabe und eine angenehme Benutzererfahrung."
         },
-        techStack: ["HTML5", "CSS3", "JavaScript", "i18n (Internationalization)", "Local Storage", "Responsive Design"],
+        description: {
+            ru: `🧠 <strong>Кратко о проекте</strong><br><br>MyHealthForm — это веб-приложение с адаптивной формой для сбора информации о состоянии здоровья пользователя. Проект ориентирован на удобство ввода данных и приятный пользовательский опыт при заполнении анкеты.<br><br>⸻<br><br>🎯 <strong>Цель проекта</strong><br><br>Создать простой, понятный и отзывчивый интерфейс формы, который позволяет пользователю:<br>• быстро и интуитивно вводить данные о собственном здоровье;<br>• получить удобный опыт взаимодействия на любых устройствах;<br>• заложить основу для последующей интеграции с серверной логикой или базой данных.<br><br>⸻<br><br>🛠 <strong>Моя роль и вклад</strong><br><br>Я отвечал за:<br>• <strong>Прототипирование интерфейса</strong> — продумал структуру и последовательность вопросов, чтобы минимизировать когнитивную нагрузку пользователя;<br>• <strong>Frontend-разработку</strong> — реализовал интерактивную форму с проверкой вводимых данных и подтверждением заполнения;<br>• <strong>Адаптивную вёрстку</strong> — интерфейс одинаково удобно работает на мобильных, планшетах и на десктопах;<br>• <strong>Техническую реализацию логики формы</strong> — валидация, управление состоянием и последующая отправка (готовность к backend-интеграции).<br><br><strong>Инструменты и технологии:</strong><br>• HTML/CSS (Layout, Flex/Grid, адаптивные стили),<br>• JavaScript,<br>• UX-ориентированные решения для комфортного заполнения.`,
+            en: `🧠 <strong>Briefly about the project</strong><br><br>MyHealthForm is a web application with an adaptive form for collecting user health information. The project focuses on data entry convenience and a pleasant user experience when filling out the questionnaire.<br><br>⸻<br><br>🎯 <strong>Project goal</strong><br><br>Create a simple, clear and responsive form interface that allows users to:<br>• quickly and intuitively enter their health data;<br>• get a convenient interaction experience on any device;<br>• lay the foundation for subsequent integration with server logic or database.<br><br>⸻<br><br>🛠 <strong>My role and contribution</strong><br><br>I was responsible for:<br>• <strong>Interface prototyping</strong> — designed the structure and sequence of questions to minimize user cognitive load;<br>• <strong>Frontend development</strong> — implemented an interactive form with input validation and completion confirmation;<br>• <strong>Adaptive layout</strong> — the interface works equally well on mobile, tablets and desktops;<br>• <strong>Technical implementation of form logic</strong> — validation, state management and subsequent submission (readiness for backend integration).<br><br><strong>Tools and technologies:</strong><br>• HTML/CSS (Layout, Flex/Grid, adaptive styles),<br>• JavaScript,<br>• UX-oriented solutions for comfortable filling.`,
+            de: `🧠 <strong>Kurz zum Projekt</strong><br><br>MyHealthForm ist eine Webanwendung mit einem adaptiven Formular zur Erfassung von Gesundheitsinformationen des Benutzers. Das Projekt konzentriert sich auf die Bequemlichkeit der Dateneingabe und eine angenehme Benutzererfahrung beim Ausfüllen des Fragebogens.<br><br>⸻<br><br>🎯 <strong>Projektziel</strong><br><br>Erstellen Sie eine einfache, klare und reaktionsschnelle Formularoberfläche, die es Benutzern ermöglicht:<br>• schnell und intuitiv ihre Gesundheitsdaten einzugeben;<br>• eine bequeme Interaktionserfahrung auf jedem Gerät zu erhalten;<br>• die Grundlage für die anschließende Integration mit Serverlogik oder Datenbank zu legen.<br><br>⸻<br><br>🛠 <strong>Meine Rolle und Beitrag</strong><br><br>Ich war verantwortlich für:<br>• <strong>Interface-Prototyping</strong> — entwickelte die Struktur und Sequenz der Fragen, um die kognitive Belastung des Benutzers zu minimieren;<br>• <strong>Frontend-Entwicklung</strong> — implementierte ein interaktives Formular mit Eingabevalidierung und Bestätigung der Ausfüllung;<br>• <strong>Adaptives Layout</strong> — die Benutzeroberfläche funktioniert gleichermaßen gut auf Mobilgeräten, Tablets und Desktops;<br>• <strong>Technische Implementierung der Formularlogik</strong> — Validierung, Zustandsverwaltung und anschließende Übermittlung (Bereitschaft für Backend-Integration).<br><br><strong>Tools und Technologien:</strong><br>• HTML/CSS (Layout, Flex/Grid, adaptive Styles),<br>• JavaScript,<br>• UX-orientierte Lösungen für komfortables Ausfüllen.`
+        },
+        techStack: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Form Validation", "UX/UI Design"],
         liveUrl: "https://myhealthform.vercel.app/",
         githubUrl: null,
         image: null
     },
     {
+        id: "wellness-checkup",
         title: {
             ru: "Wellness Checkup",
             en: "Wellness Checkup",
             de: "Wellness Checkup"
+        },
+        shortDescription: {
+            ru: "Комплексная система оценки здоровья с многоуровневой валидацией данных. Структурированная форма с логической последовательностью вопросов.",
+            en: "Comprehensive health assessment system with multi-level data validation. Structured form with logical question sequence.",
+            de: "Umfassendes Gesundheitsbewertungssystem mit mehrstufiger Datenvalidierung. Strukturiertes Formular mit logischer Fragensequenz."
         },
         description: {
             ru: "Комплексная система оценки здоровья с многоуровневой валидацией данных. Создал структурированную форму с логической последовательностью вопросов и визуальной обратной связью для пользователя.",
@@ -402,38 +420,54 @@ const projectsData = [
         image: null
     },
     {
+        id: "ainur-sherbakova",
         title: {
             ru: "Ainur Sherbakova",
             en: "Ainur Sherbakova",
             de: "Ainur Sherbakova"
         },
-        description: {
-            ru: "Персональная медицинская анкета с кастомным дизайном. Реализовал персонализированный интерфейс, систему сохранения данных и оптимизированную структуру для медицинских консультаций.",
-            en: "Personal medical questionnaire with custom design. Implemented a personalized interface, data saving system, and optimized structure for medical consultations.",
-            de: "Persönlicher medizinischer Fragebogen mit individuellem Design. Implementierte eine personalisierte Benutzeroberfläche, Datenspeichersystem und optimierte Struktur für medizinische Beratungen."
+        shortDescription: {
+            ru: "Веб-интерфейс интерактивной формы для сбора данных о состоянии здоровья. Быстрая и удобная анкета, адаптированная под различные устройства.",
+            en: "Web interface for an interactive form to collect health data. Fast and convenient questionnaire adapted for various devices.",
+            de: "Web-Interface für ein interaktives Formular zur Erfassung von Gesundheitsdaten. Schneller und bequemer Fragebogen, angepasst für verschiedene Geräte."
         },
-        techStack: ["HTML5", "CSS3", "JavaScript", "Custom Styling", "Data Persistence", "Medical Forms"],
+        description: {
+            ru: `🧠 <strong>О проекте</strong><br><br>Ainur Sherbakova — это веб-интерфейс интерактивной формы для сбора данных о состоянии здоровья пользователя. Проект служит примером быстрой и удобной анкеты, адаптированной под различные устройства.<br><br>⸻<br><br>🎯 <strong>Цель проекта</strong><br><br>Создать:<br>• простой и понятный интерфейс для ввода информации о самочувствии;<br>• отзывчивую форму, которая одинаково удобно работает на мобильных и десктопных устройствах;<br>• основу для последующей обработки данных (например, через API или сервер-логики).<br><br>⸻<br><br>🛠 <strong>Моя роль и вклад</strong><br><br>В этом проекте я отвечал за весь фронтенд-цикл — от интерфейса до логики заполнения:<br><br><strong>📌 Интерфейс и UX</strong><br>• Спроектировал удобный пользовательский интерфейс формы;<br>• Оптимизировал последовательность полей, чтобы процесс заполнения был плавным;<br><br><strong>🧠 Frontend-разработка</strong><br>• Реализовал адаптивную верстку, которая учитывает разные экраны;<br>• Настроил валидацию вводимых данных, чтобы минимизировать ошибки при отправке;<br><br><strong>💻 Технологии</strong><br>• HTML & CSS — для структуры и визуального оформления;<br>• JavaScript / (React/Next.js) — для управления состоянием формы, обработки событий и логики;<br>• Responsive Design — секции подстраиваются под устройства без потери пользовательского опыта.`,
+            en: `🧠 <strong>About the project</strong><br><br>Ainur Sherbakova is a web interface for an interactive form to collect user health data. The project serves as an example of a fast and convenient questionnaire adapted for various devices.<br><br>⸻<br><br>🎯 <strong>Project goal</strong><br><br>Create:<br>• a simple and clear interface for entering health information;<br>• a responsive form that works equally well on mobile and desktop devices;<br>• a foundation for subsequent data processing (e.g., through API or server logic).<br><br>⸻<br><br>🛠 <strong>My role and contribution</strong><br><br>In this project I was responsible for the entire frontend cycle — from interface to filling logic:<br><br><strong>📌 Interface and UX</strong><br>• Designed a convenient user interface for the form;<br>• Optimized the sequence of fields so that the filling process is smooth;<br><br><strong>🧠 Frontend development</strong><br>• Implemented adaptive layout that takes into account different screens;<br>• Set up input data validation to minimize errors when submitting;<br><br><strong>💻 Technologies</strong><br>• HTML & CSS — for structure and visual design;<br>• JavaScript / (React/Next.js) — for form state management, event handling and logic;<br>• Responsive Design — sections adapt to devices without losing user experience.`,
+            de: `🧠 <strong>Über das Projekt</strong><br><br>Ainur Sherbakova ist ein Web-Interface für ein interaktives Formular zur Erfassung von Gesundheitsdaten des Benutzers. Das Projekt dient als Beispiel für einen schnellen und bequemen Fragebogen, angepasst für verschiedene Geräte.<br><br>⸻<br><br>🎯 <strong>Projektziel</strong><br><br>Erstellen:<br>• eine einfache und klare Benutzeroberfläche zur Eingabe von Gesundheitsinformationen;<br>• ein responsives Formular, das gleichermaßen gut auf Mobilgeräten und Desktop-Geräten funktioniert;<br>• eine Grundlage für die anschließende Datenverarbeitung (z. B. über API oder Server-Logik).<br><br>⸻<br><br>🛠 <strong>Meine Rolle und Beitrag</strong><br><br>In diesem Projekt war ich verantwortlich für den gesamten Frontend-Zyklus — von der Benutzeroberfläche bis zur Ausfülllogik:<br><br><strong>📌 Interface und UX</strong><br>• Entwarf eine bequeme Benutzeroberfläche für das Formular;<br>• Optimierte die Reihenfolge der Felder, damit der Ausfüllprozess reibungslos verläuft;<br><br><strong>🧠 Frontend-Entwicklung</strong><br>• Implementierte ein adaptives Layout, das verschiedene Bildschirme berücksichtigt;<br>• Richtete die Validierung der Eingabedaten ein, um Fehler beim Senden zu minimieren;<br><br><strong>💻 Technologien</strong><br>• HTML & CSS — für Struktur und visuelles Design;<br>• JavaScript / (React/Next.js) — für Formularzustandsverwaltung, Ereignisbehandlung und Logik;<br>• Responsive Design — Abschnitte passen sich an Geräte an, ohne die Benutzererfahrung zu verlieren.`
+        },
+        techStack: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Form Validation", "UX/UI Design"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
         githubUrl: null,
         image: null
     },
     {
+        id: "my-wellness-tracking",
         title: {
             ru: "My Wellness Tracking",
             en: "My Wellness Tracking",
             de: "My Wellness Tracking"
         },
-        description: {
-            ru: "Веб-приложение для отслеживания показателей здоровья с возможностью ведения истории записей. Разработал систему хранения данных, визуализацию информации и удобный интерфейс для регулярного мониторинга.",
-            en: "Web application for tracking health indicators with the ability to maintain a history of records. Developed a data storage system, information visualization, and convenient interface for regular monitoring.",
-            de: "Webanwendung zur Verfolgung von Gesundheitsindikatoren mit der Möglichkeit, einen Verlauf von Aufzeichnungen zu führen. Entwickelte ein Datenspeichersystem, Informationsvisualisierung und benutzerfreundliche Oberfläche für regelmäßige Überwachung."
+        shortDescription: {
+            ru: "Веб-приложение с интерактивной формой для ввода данных о состоянии здоровья. Ориентировано на удобство заполнения, отзывчивый интерфейс и потенциал для развития.",
+            en: "Web application with an interactive form for entering health data. Focused on ease of filling, responsive interface and potential for development.",
+            de: "Webanwendung mit einem interaktiven Formular zur Eingabe von Gesundheitsdaten. Fokus auf Benutzerfreundlichkeit, responsive Benutzeroberfläche und Entwicklungspotenzial."
         },
-        techStack: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Data Visualization", "Tracking Systems"],
+        description: {
+            ru: `🧠 <strong>О проекте</strong><br><br>My Wellness Tracking — это веб-приложение с интерактивной формой для ввода данных о состоянии здоровья и благополучии пользователя. Приложение ориентировано на удобство заполнения анкеты, отзывчивый интерфейс и потенциал для развития в полноценный инструмент отслеживания.<br><br>⸻<br><br>🎯 <strong>Цель проекта</strong><br><br>Создать функциональную и легкую в использовании веб-форму, которая:<br>• позволяет пользователю быстро и понятно вводить данные о самочувствии;<br>• корректно отображается на любых устройствах (адаптивный интерфейс);<br>• служит технической базой для возможной серверной логики и хранения данных.<br><br>⸻<br><br>🛠 <strong>Моя роль и вклад</strong><br><br>В этом проекте я отвечал за полный цикл frontend-разработки:<br><br><strong>🧩 Проектирование интерфейса и UX</strong><br>• Продумал последовательность элементов формы для удобного взаимодействия;<br>• Обеспечил интуитивную навигацию и простоту ввода информации.<br><br><strong>💻 Реализация frontend-части</strong><br>• Создал отзывчивую веб-форму с адаптацией под разные экраны;<br>• Настроил клиентскую валидацию данных для корректного ввода;<br>• Подготовил архитектуру, удобную для дальнейшей интеграции с backend-частью.<br><br><strong>🧠 Технологии</strong><br>• HTML & CSS — для структурной разметки и стилизации;<br>• JavaScript / (React/Next.js) — логика управления состоянием формы и обработка событий;<br>• Responsive Design — адаптация интерфейса под мобильные и десктоп-устройства.`,
+            en: `🧠 <strong>About the project</strong><br><br>My Wellness Tracking is a web application with an interactive form for entering user health and wellness data. The application is focused on ease of filling out the questionnaire, responsive interface and potential for development into a full-fledged tracking tool.<br><br>⸻<br><br>🎯 <strong>Project goal</strong><br><br>Create a functional and easy-to-use web form that:<br>• allows users to quickly and clearly enter health data;<br>• displays correctly on any device (adaptive interface);<br>• serves as a technical foundation for possible server logic and data storage.<br><br>⸻<br><br>🛠 <strong>My role and contribution</strong><br><br>In this project I was responsible for the full frontend development cycle:<br><br><strong>🧩 Interface and UX design</strong><br>• Designed the sequence of form elements for convenient interaction;<br>• Ensured intuitive navigation and ease of information input.<br><br><strong>💻 Frontend implementation</strong><br>• Created a responsive web form with adaptation to different screens;<br>• Set up client-side data validation for correct input;<br>• Prepared architecture convenient for further integration with the backend part.<br><br><strong>🧠 Technologies</strong><br>• HTML & CSS — for structural markup and styling;<br>• JavaScript / (React/Next.js) — form state management logic and event handling;<br>• Responsive Design — interface adaptation for mobile and desktop devices.`,
+            de: `🧠 <strong>Über das Projekt</strong><br><br>My Wellness Tracking ist eine Webanwendung mit einem interaktiven Formular zur Eingabe von Gesundheits- und Wohlbefindensdaten des Benutzers. Die Anwendung konzentriert sich auf die Benutzerfreundlichkeit beim Ausfüllen des Fragebogens, responsive Benutzeroberfläche und Entwicklungspotenzial zu einem vollwertigen Tracking-Tool.<br><br>⸻<br><br>🎯 <strong>Projektziel</strong><br><br>Erstellen Sie ein funktionales und benutzerfreundliches Webformular, das:<br>• es Benutzern ermöglicht, schnell und klar Gesundheitsdaten einzugeben;<br>• korrekt auf allen Geräten angezeigt wird (adaptives Interface);<br>• als technische Grundlage für mögliche Server-Logik und Datenspeicherung dient.<br><br>⸻<br><br>🛠 <strong>Meine Rolle und Beitrag</strong><br><br>In diesem Projekt war ich verantwortlich für den vollständigen Frontend-Entwicklungszyklus:<br><br><strong>🧩 Interface- und UX-Design</strong><br>• Entwarf die Reihenfolge der Formularelemente für bequeme Interaktion;<br>• Gewährleistete intuitive Navigation und einfache Informationseingabe.<br><br><strong>💻 Frontend-Implementierung</strong><br>• Erstellte ein responsives Webformular mit Anpassung an verschiedene Bildschirme;<br>• Richtete die clientseitige Datenvalidierung für korrekte Eingabe ein;<br>• Bereitete Architektur vor, die für die weitere Integration mit dem Backend-Teil bequem ist.<br><br><strong>🧠 Technologien</strong><br>• HTML & CSS — für strukturelles Markup und Styling;<br>• JavaScript / (React/Next.js) — Formularzustandsverwaltungslogik und Ereignisbehandlung;<br>• Responsive Design — Interface-Anpassung für Mobil- und Desktop-Geräte.`
+        },
+        techStack: ["HTML5", "CSS3", "JavaScript", "Responsive Design", "Form Validation", "UX/UI Design"],
         liveUrl: "https://my-wellness-tracking.vercel.app/",
         githubUrl: null,
         image: null
     }
 ];
+
+// Make projectsData and translations available globally for project.js
+window.projectsData = projectsData;
+window.translations = translations;
 
 // Get current language from localStorage or default to 'ru'
 let currentLanguage = localStorage.getItem('language') || 'ru';
@@ -1165,24 +1199,10 @@ function renderProjects() {
     
     container.innerHTML = projectsData.map((project, index) => {
         const projectTitle = typeof project.title === 'object' ? project.title[currentLanguage] || project.title.ru : project.title;
-        const projectDescription = typeof project.description === 'object' ? project.description[currentLanguage] || project.description.ru : project.description;
-        
-        const liveButton = project.liveUrl 
-            ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-live">${liveText}</a>`
-            : '';
-        const githubButton = project.githubUrl
-            ? `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-github">${githubText}</a>`
-            : '';
-        
-        const buttons = liveButton || githubButton 
-            ? `<div class="project-buttons">${liveButton}${githubButton}</div>`
-            : '';
-        
-        const techTitle = getTranslation('projects.techTitle', translations[currentLanguage]) || 'Используемые технологии:';
-        const readMoreText = getTranslation('projects.readMore', translations[currentLanguage]) || 'Читать далее';
-        const readLessText = getTranslation('projects.readLess', translations[currentLanguage]) || 'Свернуть';
-        const showMoreText = getTranslation('projects.showMore', translations[currentLanguage]) || 'Показать все';
-        const showLessText = getTranslation('projects.showLess', translations[currentLanguage]) || 'Скрыть';
+        const projectShortDescription = project.shortDescription 
+            ? (typeof project.shortDescription === 'object' ? project.shortDescription[currentLanguage] || project.shortDescription.ru : project.shortDescription)
+            : (typeof project.description === 'object' ? project.description[currentLanguage] || project.description.ru : project.description).substring(0, 150) + '...';
+        const projectId = project.id || `project-${index}`;
         
         // Используем изображение проекта или градиент по умолчанию
         const hasImage = project.image && project.image.trim() !== '';
@@ -1200,33 +1220,29 @@ function renderProjects() {
             }
         }
         
-        // Разделяем технологии на видимые и скрытые
+        // Показываем только первые 3 технологии на карточке
         const visibleTechs = project.techStack.slice(0, 3);
-        const hiddenTechs = project.techStack.slice(3);
-        const hasMoreTechs = hiddenTechs.length > 0;
         
         return `
-            <div class="project-card" data-index="${index}">
-                <div class="project-image ${hasImage ? 'has-image' : ''}" style="${imageStyle}">
-                    ${hasImage ? '<div class="project-image-overlay"></div>' : ''}
-                    ${buttons ? `<div class="project-overlay">${buttons}</div>` : ''}
-                </div>
-                <div class="project-info">
-                    <h3>${projectTitle}</h3>
-                    <div class="project-description-wrapper">
-                        <p class="project-description">${projectDescription}</p>
-                        <button class="project-read-more-btn" data-project="${index}">${readMoreText}</button>
+            <a href="project.html?id=${projectId}" class="project-card-link">
+                <div class="project-card" data-index="${index}" data-project-id="${projectId}">
+                    <div class="project-image ${hasImage ? 'has-image' : ''}" style="${imageStyle}">
+                        ${hasImage ? '<div class="project-image-overlay"></div>' : ''}
                     </div>
-                    <div class="project-tech-section">
-                        <h4 class="project-tech-title">${techTitle}</h4>
-                        <div class="project-tags">
-                            ${visibleTechs.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                            ${hasMoreTechs ? hiddenTechs.map(tech => `<span class="tech-tag tech-tag-hidden">${tech}</span>`).join('') : ''}
+                    <div class="project-info">
+                        <h3>${projectTitle}</h3>
+                        <div class="project-description-wrapper">
+                            <p class="project-description">${projectShortDescription}</p>
                         </div>
-                        ${hasMoreTechs ? `<button class="project-show-tech-btn" data-project="${index}">${showMoreText}</button>` : ''}
+                        <div class="project-tech-section">
+                            <div class="project-tags">
+                                ${visibleTechs.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                                ${project.techStack.length > 3 ? `<span class="tech-tag">+${project.techStack.length - 3}</span>` : ''}
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </a>
         `;
     }).join('');
     
@@ -1235,8 +1251,7 @@ function renderProjects() {
         projectObserver.observe(card);
     });
     
-    // Добавить обработчики для кнопок "Читать далее" и "Показать все"
-    setupProjectInteractions();
+    // Карточки теперь кликабельны через ссылки, обработчики не нужны
 }
 
 // Настройка интерактивности проектов
