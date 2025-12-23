@@ -305,6 +305,17 @@ const translations = {
             title: 'Kontakt aufnehmen',
             description: 'Haben Sie ein Projekt oder eine Frage? Schreiben Sie mir und ich antworte so schnell wie möglich. Bereit, Ihre Aufgabe zu besprechen und eine Lösung vorzuschlagen.',
             gdpr: 'Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.',
+            email: {
+                label: 'E-Mail'
+            },
+            telegram: {
+                label: 'Telegram',
+                value: '@username'
+            },
+            github: {
+                label: 'GitHub',
+                value: 'github.com/username'
+            },
             form: {
                 name: 'Ihr Name',
                 email: 'E-Mail',
@@ -317,17 +328,6 @@ const translations = {
                 consent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.',
                 consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
             }
-            email: {
-                label: 'E-Mail'
-            },
-            telegram: {
-                label: 'Telegram',
-                value: '@username'
-            },
-            github: {
-                label: 'GitHub',
-                value: 'github.com/username'
-            },
         },
         footer: {
             name: 'Anatolii Yastrebov',
