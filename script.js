@@ -85,7 +85,7 @@ const translations = {
         contact: {
             title: 'Связаться со мной',
             description: 'Есть проект или вопрос? Напишите мне, и я отвечу в ближайшее время. Готов обсудить вашу задачу и предложить решение.',
-            gdpr: 'Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.',
+            gdpr: 'Ваши данные используются исключительно для ответа на ваш запрос. Дополнительную информацию вы найдете в нашей <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Политике конфиденциальности</a>.',
             email: {
                 label: 'Email'
             },
@@ -106,7 +106,7 @@ const translations = {
                 sending: 'Отправка...',
                 error: 'Ошибка отправки',
                 notConfigured: 'Форма не настроена. Пожалуйста, настройте config.js',
-                consent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.',
+                consent: 'Я согласен на обработку моих персональных данных в соответствии с <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.',
                 consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
             }
         },
@@ -201,7 +201,7 @@ const translations = {
         contact: {
             title: 'Get in Touch',
             description: 'Have a project or question? Write to me and I will reply as soon as possible. Ready to discuss your task and suggest a solution.',
-            gdpr: 'Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.',
+            gdpr: 'Your data is used exclusively to respond to your inquiry. For more information, please see our <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.',
             email: {
                 label: 'Email'
             },
@@ -222,7 +222,7 @@ const translations = {
                 sending: 'Sending...',
                 error: 'Sending error',
                 notConfigured: 'Form is not configured. Please configure config.js',
-                consent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.',
+                consent: 'Я согласен на обработку моих персональных данных в соответствии с <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.',
                 consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
             }
         },
@@ -338,7 +338,7 @@ const translations = {
                 sending: 'Wird gesendet...',
                 error: 'Sendefehler',
                 notConfigured: 'Formular ist nicht konfiguriert. Bitte konfigurieren Sie config.js',
-                consent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.',
+                consent: 'Я согласен на обработку моих персональных данных в соответствии с <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.',
                 consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
             }
         },
