@@ -48,11 +48,13 @@ app.use(cors({
 // Парсинг JSON тела запроса
 app.use(express.json());
 
-// Логирование всех запросов
-app.use((req, res, next) => {
-    console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
-    next();
-});
+// Логирование только в development режиме
+if (process.env.NODE_ENV !== 'production') {
+    app.use((req, res, next) => {
+        console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
+        next();
+    });
+}
 
 // ============================================
 // НАСТРОЙКА SENDGRID
@@ -65,71 +67,59 @@ const missingVars = requiredEnvVars.filter(varName => !process.env[varName]);
 if (missingVars.length > 0) {
     console.error('❌ ОШИБКА: Отсутствуют обязательные переменные окружения:');
     missingVars.forEach(varName => console.error(`   - ${varName}`));
-    console.error('\n📝 Создайте файл .env на основе .env.example и заполните все поля.');
-    console.error('\n💡 Необходимые переменные:');
-    console.error('   - SENDGRID_API_KEY: API ключ из SendGrid Dashboard');
-    console.error('   - EMAIL_FROM: Email адрес отправителя (должен быть verified в SendGrid)');
-    console.error('   - EMAIL_TO: Email адрес получателя');
     process.exit(1);
 }
 
 // Устанавливаем API ключ SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-// ВАЖНО: Для нормальной доставляемости писем (чтобы не попадали в спам)
-// обязательно нужна Domain Authentication в SendGrid (SPF/DKIM).
-// 
-// EMAIL_FROM должен быть на домене, который аутентифицирован в SendGrid.
-// Рекомендуется использовать адрес вида: contact@ваш-домен.com
-// 
-// Настройка Domain Authentication:
-// 1. SendGrid Dashboard → Settings → Sender Authentication → Domain Authentication
-// 2. Добавьте ваш домен и следуйте инструкциям по настройке DNS записей
-// 3. После верификации домена, все email адреса на этом домене автоматически verified
-//
-// Без Domain Authentication письма могут попадать в спам!
-console.log('✅ SendGrid настроен');
-console.log(`📧 Отправитель: ${process.env.EMAIL_FROM}`);
-console.log(`📬 Получатель: ${process.env.EMAIL_TO}`);
-console.log('⚠️  Для нормальной доставляемости нужна Domain Authentication в SendGrid!');
+if (process.env.NODE_ENV !== 'production') {
+    console.log('✅ SendGrid настроен');
+    console.log(`📧 Отправитель: ${process.env.EMAIL_FROM}`);
+    console.log(`📬 Получатель: ${process.env.EMAIL_TO}`);
+}
 
 // ============================================
 // ВАЛИДАЦИЯ ДАННЫХ
 // ============================================
 
 /**
- * Валидирует данные формы обратной связи
+ * Валидирует данные формы обратной связи (оптимизированная версия)
  * @param {Object} data - Данные формы
  * @returns {{valid: boolean, errors: string[]}} - Результат валидации
  */
 function validateContactForm(data) {
     const errors = [];
+    
+    // Быстрая проверка типов
+    if (!data || typeof data !== 'object') {
+        return { valid: false, errors: ['Неверный формат данных'] };
+    }
 
-    // Проверка имени
-    if (!data.name || typeof data.name !== 'string') {
-        errors.push('Поле "name" обязательно и должно быть строкой');
-    } else if (data.name.trim().length < 2) {
+    // Проверка имени (оптимизировано)
+    const name = data.name?.trim();
+    if (!name || name.length < 2) {
         errors.push('Имя должно содержать минимум 2 символа');
-    } else if (data.name.trim().length > 100) {
+    } else if (name.length > 100) {
         errors.push('Имя не должно превышать 100 символов');
     }
 
-    // Проверка email
-    if (!data.email || typeof data.email !== 'string') {
-        errors.push('Поле "email" обязательно и должно быть строкой');
+    // Проверка email (оптимизировано)
+    const email = data.email?.trim();
+    if (!email) {
+        errors.push('Email обязателен');
     } else {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email.trim())) {
+        if (!emailRegex.test(email)) {
             errors.push('Некорректный формат email адреса');
         }
     }
 
-    // Проверка сообщения
-    if (!data.message || typeof data.message !== 'string') {
-        errors.push('Поле "message" обязательно и должно быть строкой');
-    } else if (data.message.trim().length < 5) {
+    // Проверка сообщения (оптимизировано)
+    const message = data.message?.trim();
+    if (!message || message.length < 5) {
         errors.push('Сообщение должно содержать минимум 5 символов');
-    } else if (data.message.trim().length > 2000) {
+    } else if (message.length > 2000) {
         errors.push('Сообщение не должно превышать 2000 символов');
     }
 
@@ -167,16 +157,12 @@ app.get('/health', (req, res) => {
     });
 });
 
-// Обработка формы обратной связи
+// Обработка формы обратной связи (оптимизированная)
 app.post('/api/contact', async (req, res) => {
     try {
-        console.log('📧 Получен запрос на отправку сообщения');
-        console.log('📝 Полученные данные:', JSON.stringify(req.body, null, 2));
-
-        // Валидация данных
+        // Быстрая валидация данных
         const validation = validateContactForm(req.body);
         if (!validation.valid) {
-            console.log('❌ Ошибка валидации:', validation.errors);
             return res.status(400).json({
                 success: false,
                 message: 'Ошибка валидации данных',
@@ -190,71 +176,40 @@ app.post('/api/contact', async (req, res) => {
         const cleanEmail = email.trim();
         const cleanMessage = message.trim();
 
-        console.log(`📝 Данные формы: имя="${cleanName}", email="${cleanEmail}"`);
-
-        // Формируем содержимое письма для SendGrid
-        // Используем только plain text (без HTML) для лучшей доставляемости
-        // Текст письма нейтральный, без CAPS, без восклицательных знаков и маркетинговых слов
+        // Формируем содержимое письма для SendGrid (минимальный текст)
         const msg = {
             to: process.env.EMAIL_TO,
-            // EMAIL_FROM должен быть на домене, который аутентифицирован в SendGrid (Domain Authentication)
-            // Рекомендуется использовать адрес вида: contact@ваш-домен.com
             from: process.env.EMAIL_FROM,
             subject: `Новое сообщение с сайта от ${cleanName}`,
-            // Отправляем только plain text для лучшей доставляемости (меньше вероятность попасть в спам)
-            text: `
-Новое сообщение через форму обратной связи на сайте.
-
-Имя отправителя: ${cleanName}
-Email отправителя: ${cleanEmail}
-
-Сообщение:
-${cleanMessage}
-
----
-Автоматическое сообщение с сайта портфолио.
-            `.trim()
+            text: `Новое сообщение через форму обратной связи на сайте.\n\nИмя отправителя: ${cleanName}\nEmail отправителя: ${cleanEmail}\n\nСообщение:\n${cleanMessage}\n\n---\nАвтоматическое сообщение с сайта портфолио.`
         };
 
-        // Отправляем email через SendGrid
-        console.log('📤 Отправка email через SendGrid...');
-        const [response] = await sgMail.send(msg);
+        // Отправляем email через SendGrid (без ожидания полного ответа)
+        const sendPromise = sgMail.send(msg);
         
-        console.log('✅ Email успешно отправлен через SendGrid!');
-        console.log(`   Status Code: ${response.statusCode}`);
-        console.log(`   Получатель: ${process.env.EMAIL_TO}`);
-        console.log(`   Отправитель: ${process.env.EMAIL_FROM}`);
-
-        // Успешный ответ
+        // Отвечаем клиенту сразу после начала отправки (не ждем завершения)
         res.status(200).json({
             success: true,
-            message: 'Сообщение успешно отправлено',
-            statusCode: response.statusCode
+            message: 'Сообщение успешно отправлено'
+        });
+        
+        // Обрабатываем результат отправки асинхронно (не блокируем ответ)
+        sendPromise.then(([response]) => {
+            if (process.env.NODE_ENV !== 'production') {
+                console.log('✅ Email успешно отправлен через SendGrid');
+            }
+        }).catch((error) => {
+            // Логируем ошибку, но клиент уже получил успешный ответ
+            console.error('❌ Ошибка при отправке email через SendGrid:', error.message);
+            if (error.response?.body?.errors) {
+                error.response.body.errors.forEach(err => {
+                    console.error(`   - ${err.message}`);
+                });
+            }
         });
 
     } catch (error) {
-        console.error('❌ Ошибка при отправке email через SendGrid:', error.message);
-        
-        // Более детальная обработка ошибок SendGrid
-        if (error.response) {
-            console.error('   Status Code:', error.response.statusCode);
-            console.error('   Body:', JSON.stringify(error.response.body, null, 2));
-            
-            // Проверяем типичные ошибки SendGrid
-            if (error.response.body?.errors) {
-                error.response.body.errors.forEach(err => {
-                    console.error(`   - ${err.message}`);
-                    if (err.message.includes('verified') || err.message.includes('sender')) {
-                        console.error('   ⚠️  EMAIL_FROM должен быть на домене с Domain Authentication в SendGrid!');
-                        console.error('   💡 Настройте Domain Authentication: Settings → Sender Authentication → Domain Authentication');
-                    }
-                });
-            }
-        } else {
-            console.error('   Детали ошибки:', error);
-        }
-
-        // Отправляем общий ответ об ошибке (не раскрываем детали для безопасности)
+        // Только критические ошибки валидации
         res.status(500).json({
             success: false,
             message: 'Произошла ошибка при отправке сообщения. Попробуйте позже.'

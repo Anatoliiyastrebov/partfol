@@ -813,15 +813,22 @@ document.querySelectorAll('.skill-progress').forEach(bar => {
     skillObserver.observe(bar);
 });
 
-// Parallax Effect for Hero Section
+// Parallax Effect for Hero Section (оптимизировано с throttling)
+let lastScrollTime = 0;
+const scrollThrottle = 16; // ~60fps
+
 window.addEventListener('scroll', () => {
+    const now = Date.now();
+    if (now - lastScrollTime < scrollThrottle) return;
+    lastScrollTime = now;
+    
     const scrolled = window.pageYOffset;
     const hero = document.querySelector('.hero');
     if (hero) {
         hero.style.transform = `translateY(${scrolled * 0.5}px)`;
         hero.style.opacity = 1 - scrolled / 500;
     }
-});
+}, { passive: true });
 
 // URL backend API
 // Автоматическое определение: локально или в продакшене
@@ -839,18 +846,23 @@ const API_BASE_URL = (() => {
 // Функция отправки формы на backend (оптимизированная)
 async function sendContactForm(formData) {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 секунд timeout
+    const timeoutId = setTimeout(() => controller.abort(), 6000); // 6 секунд timeout (уменьшено с 10)
     
     try {
         const response = await fetch(`${API_BASE_URL}/api/contact`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: { 
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
             body: JSON.stringify({
                 name: formData.name,
                 email: formData.email,
                 message: formData.message
             }),
-            signal: controller.signal
+            signal: controller.signal,
+            cache: 'no-cache',
+            keepalive: false
         });
         
         clearTimeout(timeoutId);
