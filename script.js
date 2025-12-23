@@ -85,6 +85,7 @@ const translations = {
         contact: {
             title: 'Связаться со мной',
             description: 'Есть проект или вопрос? Напишите мне, и я отвечу в ближайшее время. Готов обсудить вашу задачу и предложить решение.',
+            gdpr: 'Данные обрабатываются в соответствии с GDPR. Используя форму обратной связи, вы соглашаетесь с обработкой ваших данных.',
             email: {
                 label: 'Email'
             },
@@ -313,6 +314,7 @@ const translations = {
         contact: {
             title: 'Kontakt aufnehmen',
             description: 'Haben Sie ein Projekt oder eine Frage? Schreiben Sie mir und ich antworte so schnell wie möglich. Bereit, Ihre Aufgabe zu besprechen und eine Lösung vorzuschlagen.',
+            gdpr: 'Daten werden gemäß DSGVO verarbeitet. Durch die Nutzung des Kontaktformulars stimmen Sie der Verarbeitung Ihrer Daten zu.',
             email: {
                 label: 'E-Mail'
             },
