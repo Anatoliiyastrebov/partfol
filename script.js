@@ -50,7 +50,13 @@ const translations = {
                 js: 'JavaScript',
                 jsDesc: 'ES6+, DOM, асинхронность',
                 react: 'React',
-                reactDesc: 'Компоненты, хуки, состояние'
+                reactDesc: 'Компоненты, хуки, состояние',
+                responsive: 'Responsive Design',
+                responsiveDesc: 'Адаптивная вёрстка для всех устройств',
+                validation: 'Form Validation',
+                validationDesc: 'Валидация форм и данных',
+                uxui: 'UX/UI Design',
+                uxuiDesc: 'Проектирование интерфейсов и UX'
             },
             backend: {
                 node: 'Node.js',
@@ -58,7 +64,9 @@ const translations = {
                 db: 'Базы данных',
                 dbDesc: 'MongoDB, SQL основы',
                 api: 'API',
-                apiDesc: 'REST, интеграции'
+                apiDesc: 'REST, интеграции',
+                dataProcessing: 'Data Processing',
+                dataProcessingDesc: 'Обработка и валидация данных'
             },
             tools: {
                 git: 'Git / GitHub',
@@ -174,7 +182,9 @@ const translations = {
                 db: 'Databases',
                 dbDesc: 'MongoDB, SQL basics',
                 api: 'API',
-                apiDesc: 'REST, integrations'
+                apiDesc: 'REST, integrations',
+                dataProcessing: 'Data Processing',
+                dataProcessingDesc: 'Data processing and validation'
             },
             tools: {
                 git: 'Git / GitHub',
@@ -290,7 +300,9 @@ const translations = {
                 db: 'Datenbanken',
                 dbDesc: 'MongoDB, SQL Grundlagen',
                 api: 'API',
-                apiDesc: 'REST, Integrationen'
+                apiDesc: 'REST, Integrationen',
+                dataProcessing: 'Data Processing',
+                dataProcessingDesc: 'Datenverarbeitung und Validierung'
             },
             tools: {
                 git: 'Git / GitHub',
