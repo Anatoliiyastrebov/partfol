@@ -349,7 +349,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation"],
         liveUrl: "https://net-bolezny.vercel.app/",
         githubUrl: null,
-        image: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#10b981;stop-opacity:1" /><stop offset="50%" style="stop-color:#34d399;stop-opacity:1" /><stop offset="100%" style="stop-color:#6ee7b7;stop-opacity:1" /></linearGradient></defs><rect width="1280" height="720" fill="url(#grad1)"/><text x="640" y="360" font-family="Arial" font-size="48" fill="white" text-anchor="middle" opacity="0.3">Net Bolezny</text></svg>')
+        image: "images/projects/net-bolezny.png"
     },
     {
         title: {
@@ -365,7 +365,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "i18n (Internationalization)", "Local Storage", "Responsive Design"],
         liveUrl: "https://myhealthform.vercel.app/",
         githubUrl: null,
-        image: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720"><defs><linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" /><stop offset="50%" style="stop-color:#60a5fa;stop-opacity:1" /><stop offset="100%" style="stop-color:#93c5fd;stop-opacity:1" /></linearGradient></defs><rect width="1280" height="720" fill="url(#grad2)"/><text x="640" y="360" font-family="Arial" font-size="48" fill="white" text-anchor="middle" opacity="0.3">My Health Form</text></svg>')
+        image: "images/projects/myhealthform.png"
     },
     {
         title: {
@@ -381,7 +381,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Form Validation", "Data Processing", "UX/UI Design"],
         liveUrl: "https://wellness-checkup.vercel.app/",
         githubUrl: null,
-        image: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720"><defs><linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" /><stop offset="50%" style="stop-color:#a78bfa;stop-opacity:1" /><stop offset="100%" style="stop-color:#c4b5fd;stop-opacity:1" /></linearGradient></defs><rect width="1280" height="720" fill="url(#grad3)"/><text x="640" y="360" font-family="Arial" font-size="48" fill="white" text-anchor="middle" opacity="0.3">Wellness Checkup</text></svg>')
+        image: "images/projects/wellness-checkup.png"
     },
     {
         title: {
@@ -397,7 +397,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Custom Styling", "Data Persistence", "Medical Forms"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
         githubUrl: null,
-        image: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720"><defs><linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#ec4899;stop-opacity:1" /><stop offset="50%" style="stop-color:#f472b6;stop-opacity:1" /><stop offset="100%" style="stop-color:#f9a8d4;stop-opacity:1" /></linearGradient></defs><rect width="1280" height="720" fill="url(#grad4)"/><text x="640" y="360" font-family="Arial" font-size="48" fill="white" text-anchor="middle" opacity="0.3">Ainur Sherbakova</text></svg>')
+        image: "images/projects/ainur-sherbakova.png"
     },
     {
         title: {
@@ -413,7 +413,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Data Visualization", "Tracking Systems"],
         liveUrl: "https://my-wellness-tracking.vercel.app/",
         githubUrl: null,
-        image: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720"><defs><linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" /><stop offset="50%" style="stop-color:#22d3ee;stop-opacity:1" /><stop offset="100%" style="stop-color:#67e8f9;stop-opacity:1" /></linearGradient></defs><rect width="1280" height="720" fill="url(#grad5)"/><text x="640" y="360" font-family="Arial" font-size="48" fill="white" text-anchor="middle" opacity="0.3">My Wellness Tracking</text></svg>')
+        image: "images/projects/my-wellness-tracking.png"
     }
 ];
 
