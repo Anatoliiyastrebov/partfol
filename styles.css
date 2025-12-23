@@ -794,11 +794,13 @@ section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-lg);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .stat-card {
     text-align: center;
-    padding: var(--spacing-xl);
+    padding: clamp(var(--spacing-md), 3vw, var(--spacing-xl));
     background: var(--bg-card);
     backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--border);
@@ -806,6 +808,8 @@ section {
     transition: all var(--transition-base);
     position: relative;
     overflow: hidden;
+    min-width: 0;
+    box-sizing: border-box;
 }
 
 .stat-card::before {
@@ -832,22 +836,29 @@ section {
 }
 
 .stat-number {
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(1.5rem, 5vw, 3rem);
     font-weight: var(--font-weight-bold);
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: clamp(var(--spacing-xs), 1.5vw, var(--spacing-sm));
     position: relative;
     z-index: 1;
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .stat-label {
     color: var(--text-secondary);
-    font-size: 1rem;
+    font-size: clamp(0.875rem, 2vw, 1rem);
     position: relative;
     z-index: 1;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 /* ===== SKILLS SECTION ===== */
@@ -1367,6 +1378,26 @@ section {
     }
 }
 
+/* Средние экраны (планшеты в альбомной ориентации) */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(var(--spacing-sm), 1.5vw, var(--spacing-md));
+    }
+    
+    .stat-card {
+        padding: clamp(var(--spacing-md), 2vw, var(--spacing-lg));
+    }
+    
+    .stat-number {
+        font-size: clamp(1.8rem, 3.5vw, 2.2rem);
+    }
+    
+    .stat-label {
+        font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+    }
+}
+
 /* Планшеты и небольшие ноутбуки */
 @media (max-width: 1024px) {
     .container {
@@ -1417,7 +1448,11 @@ section {
     
     .about-stats {
         grid-template-columns: repeat(3, 1fr);
-        gap: var(--spacing-md);
+        gap: clamp(var(--spacing-sm), 2vw, var(--spacing-md));
+    }
+    
+    .stat-card {
+        padding: clamp(var(--spacing-sm), 2.5vw, var(--spacing-lg));
     }
     
     .contact-content {
@@ -1541,6 +1576,22 @@ section {
     .about-stats {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
+        padding: 0;
+    }
+    
+    .stat-card {
+        padding: var(--spacing-lg);
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .stat-number {
+        font-size: clamp(2rem, 6vw, 2.5rem);
+    }
+    
+    .stat-label {
+        font-size: clamp(0.9rem, 2.2vw, 1rem);
     }
     
     .skills-grid {
@@ -1598,6 +1649,24 @@ section {
     .skill-card,
     .project-card {
         padding: var(--spacing-md);
+    }
+    
+    .about-stats {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+    
+    .stat-card {
+        padding: var(--spacing-md) var(--spacing-sm);
+    }
+    
+    .stat-number {
+        font-size: clamp(1.5rem, 7vw, 2rem);
+        margin-bottom: var(--spacing-xs);
+    }
+    
+    .stat-label {
+        font-size: clamp(0.75rem, 2.5vw, 0.875rem);
     }
     
     .contact-form {
