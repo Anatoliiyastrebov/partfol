@@ -336,7 +336,8 @@ const projectsData = [
         },
         techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation"],
         liveUrl: "https://net-bolezny.vercel.app/",
-        githubUrl: null
+        githubUrl: null,
+        image: "https://net-bolezny.vercel.app/"
     },
     {
         title: {
@@ -351,7 +352,8 @@ const projectsData = [
         },
         techStack: ["HTML5", "CSS3", "JavaScript", "i18n (Internationalization)", "Local Storage", "Responsive Design"],
         liveUrl: "https://myhealthform.vercel.app/",
-        githubUrl: null
+        githubUrl: null,
+        image: "https://myhealthform.vercel.app/"
     },
     {
         title: {
@@ -366,7 +368,8 @@ const projectsData = [
         },
         techStack: ["HTML5", "CSS3", "JavaScript", "Form Validation", "Data Processing", "UX/UI Design"],
         liveUrl: "https://wellness-checkup.vercel.app/",
-        githubUrl: null
+        githubUrl: null,
+        image: "https://wellness-checkup.vercel.app/"
     },
     {
         title: {
@@ -381,7 +384,8 @@ const projectsData = [
         },
         techStack: ["HTML5", "CSS3", "JavaScript", "Custom Styling", "Data Persistence", "Medical Forms"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
-        githubUrl: null
+        githubUrl: null,
+        image: "https://ainur-sherbakova.vercel.app/"
     },
     {
         title: {
@@ -396,7 +400,8 @@ const projectsData = [
         },
         techStack: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Data Visualization", "Tracking Systems"],
         liveUrl: "https://my-wellness-tracking.vercel.app/",
-        githubUrl: null
+        githubUrl: null,
+        image: "https://my-wellness-tracking.vercel.app/"
     }
 ];
 
@@ -1124,9 +1129,15 @@ function renderProjects() {
         
         const techTitle = getTranslation('projects.techTitle', translations[currentLanguage]) || 'Используемые технологии:';
         
+        // Используем изображение проекта или градиент по умолчанию
+        const imageStyle = project.image 
+            ? `background-image: url('${project.image}'); background-size: cover; background-position: center; filter: blur(8px) brightness(0.7);`
+            : `background: linear-gradient(135deg, var(--primary), var(--accent));`;
+        
         return `
             <div class="project-card" data-index="${index}">
-                <div class="project-image" style="background: linear-gradient(135deg, var(--primary), var(--accent));">
+                <div class="project-image" style="${imageStyle}">
+                    <div class="project-image-overlay"></div>
                     ${buttons ? `<div class="project-overlay">${buttons}</div>` : ''}
                 </div>
                 <div class="project-info">
