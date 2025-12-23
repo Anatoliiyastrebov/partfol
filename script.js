@@ -76,7 +76,11 @@ const translations = {
             github: 'GitHub',
             live: 'Live версия',
             noProjects: 'Проекты будут добавлены в ближайшее время',
-            techTitle: 'Используемые технологии:'
+            techTitle: 'Используемые технологии:',
+            readMore: 'Читать далее',
+            readLess: 'Свернуть',
+            showMore: 'Показать все',
+            showLess: 'Скрыть'
         },
         contact: {
             title: 'Связаться со мной',
@@ -182,7 +186,11 @@ const translations = {
             github: 'GitHub',
             live: 'Live version',
             noProjects: 'Projects will be added soon',
-            techTitle: 'Technologies used:'
+            techTitle: 'Technologies used:',
+            readMore: 'Read more',
+            readLess: 'Read less',
+            showMore: 'Show all',
+            showLess: 'Hide'
         },
         contact: {
             title: 'Get in Touch',
@@ -288,7 +296,11 @@ const translations = {
             github: 'GitHub',
             live: 'Live-Version',
             noProjects: 'Projekte werden in Kürze hinzugefügt',
-            techTitle: 'Verwendete Technologien:'
+            techTitle: 'Verwendete Technologien:',
+            readMore: 'Mehr lesen',
+            readLess: 'Weniger anzeigen',
+            showMore: 'Alle anzeigen',
+            showLess: 'Ausblenden'
         },
         contact: {
             title: 'Kontakt aufnehmen',
@@ -1128,12 +1140,21 @@ function renderProjects() {
             : '';
         
         const techTitle = getTranslation('projects.techTitle', translations[currentLanguage]) || 'Используемые технологии:';
+        const readMoreText = getTranslation('projects.readMore', translations[currentLanguage]) || 'Читать далее';
+        const readLessText = getTranslation('projects.readLess', translations[currentLanguage]) || 'Свернуть';
+        const showMoreText = getTranslation('projects.showMore', translations[currentLanguage]) || 'Показать все';
+        const showLessText = getTranslation('projects.showLess', translations[currentLanguage]) || 'Скрыть';
         
         // Используем изображение проекта или градиент по умолчанию
         const hasImage = project.image && project.image.trim() !== '';
         const imageStyle = hasImage 
             ? `background-image: url('${project.image}');`
             : `background: linear-gradient(135deg, var(--primary), var(--accent));`;
+        
+        // Разделяем технологии на видимые и скрытые
+        const visibleTechs = project.techStack.slice(0, 3);
+        const hiddenTechs = project.techStack.slice(3);
+        const hasMoreTechs = hiddenTechs.length > 0;
         
         return `
             <div class="project-card" data-index="${index}">
@@ -1143,12 +1164,17 @@ function renderProjects() {
                 </div>
                 <div class="project-info">
                     <h3>${projectTitle}</h3>
-                    <p>${projectDescription}</p>
+                    <div class="project-description-wrapper">
+                        <p class="project-description">${projectDescription}</p>
+                        <button class="project-read-more-btn" data-project="${index}">${readMoreText}</button>
+                    </div>
                     <div class="project-tech-section">
                         <h4 class="project-tech-title">${techTitle}</h4>
                         <div class="project-tags">
-                            ${project.techStack.map(tech => `<span>${tech}</span>`).join('')}
+                            ${visibleTechs.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
+                            ${hasMoreTechs ? hiddenTechs.map(tech => `<span class="tech-tag tech-tag-hidden">${tech}</span>`).join('') : ''}
                         </div>
+                        ${hasMoreTechs ? `<button class="project-show-tech-btn" data-project="${index}">${showMoreText}</button>` : ''}
                     </div>
                 </div>
             </div>
@@ -1158,6 +1184,53 @@ function renderProjects() {
     // Обновить наблюдатели для новых карточек
     document.querySelectorAll('.project-card').forEach(card => {
         projectObserver.observe(card);
+    });
+    
+    // Добавить обработчики для кнопок "Читать далее" и "Показать все"
+    setupProjectInteractions();
+}
+
+// Настройка интерактивности проектов
+function setupProjectInteractions() {
+    // Обработчик для "Читать далее" / "Свернуть"
+    document.querySelectorAll('.project-read-more-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const projectIndex = this.getAttribute('data-project');
+            const description = this.previousElementSibling;
+            const isExpanded = description.classList.contains('expanded');
+            
+            if (isExpanded) {
+                description.classList.remove('expanded');
+                this.textContent = getTranslation('projects.readMore', translations[currentLanguage]) || 'Читать далее';
+            } else {
+                description.classList.add('expanded');
+                this.textContent = getTranslation('projects.readLess', translations[currentLanguage]) || 'Свернуть';
+            }
+        });
+    });
+    
+    // Обработчик для "Показать все" / "Скрыть" технологий
+    document.querySelectorAll('.project-show-tech-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const projectIndex = this.getAttribute('data-project');
+            const projectCard = this.closest('.project-card');
+            const hiddenTechs = projectCard.querySelectorAll('.tech-tag-hidden');
+            const isExpanded = hiddenTechs[0] && hiddenTechs[0].classList.contains('show');
+            
+            hiddenTechs.forEach(tech => {
+                if (isExpanded) {
+                    tech.classList.remove('show');
+                } else {
+                    tech.classList.add('show');
+                }
+            });
+            
+            if (isExpanded) {
+                this.textContent = getTranslation('projects.showMore', translations[currentLanguage]) || 'Показать все';
+            } else {
+                this.textContent = getTranslation('projects.showLess', translations[currentLanguage]) || 'Скрыть';
+            }
+        });
     });
 }
 

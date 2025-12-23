@@ -1217,10 +1217,49 @@ section {
     color: var(--text-primary);
 }
 
-.project-info p {
-    color: var(--text-secondary);
+.project-description-wrapper {
+    position: relative;
     margin-bottom: var(--spacing-md);
+}
+
+.project-info p,
+.project-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
     line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: all var(--transition-base);
+}
+
+.project-description.expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    overflow: visible;
+}
+
+.project-read-more-btn {
+    background: transparent;
+    border: none;
+    color: var(--primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: var(--spacing-xs) 0;
+    margin-top: var(--spacing-xs);
+    text-decoration: underline;
+    transition: color var(--transition-base);
+    font-weight: var(--font-weight-medium);
+}
+
+.project-read-more-btn:hover {
+    color: var(--primary-light);
+}
+
+.project-read-more-btn.hidden {
+    display: none;
 }
 
 .project-tech-section {
@@ -1242,6 +1281,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: var(--spacing-xs);
+    position: relative;
 }
 
 .project-tags span {
@@ -1254,10 +1294,42 @@ section {
     transition: all var(--transition-base);
 }
 
-.project-tags span:hover {
+.project-tags span:hover,
+.project-tags .tech-tag:hover {
     border-color: var(--primary);
     color: var(--text-primary);
     background: var(--bg-card);
+}
+
+.tech-tag-hidden {
+    display: none !important;
+}
+
+.tech-tag-hidden.show {
+    display: inline-block !important;
+}
+
+.project-show-tech-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    cursor: pointer;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+    border-radius: 6px;
+    transition: all var(--transition-base);
+    font-weight: var(--font-weight-medium);
+}
+
+.project-show-tech-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background: var(--bg-secondary);
+}
+
+.project-show-tech-btn.hidden {
+    display: none;
 }
 
 /* ===== CONTACT SECTION ===== */
