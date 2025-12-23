@@ -1104,20 +1104,23 @@ section {
 /* Размытие для фонового изображения */
 .project-image.has-image {
     position: relative;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
 .project-image.has-image::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
     background-image: inherit;
     background-size: cover;
     background-position: center;
-    filter: blur(12px) brightness(0.6);
-    transform: scale(1.1);
+    filter: blur(15px) brightness(0.5);
+    transform: scale(1.05);
     z-index: 0;
 }
 
