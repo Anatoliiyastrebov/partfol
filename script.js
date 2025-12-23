@@ -337,7 +337,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation"],
         liveUrl: "https://net-bolezny.vercel.app/",
         githubUrl: null,
-        image: null // Можно добавить URL скриншота позже
+        image: "https://api.screenshotmachine.com/?key=demo&url=https://net-bolezny.vercel.app/&dimension=1280x720"
     },
     {
         title: {
@@ -353,7 +353,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "i18n (Internationalization)", "Local Storage", "Responsive Design"],
         liveUrl: "https://myhealthform.vercel.app/",
         githubUrl: null,
-        image: null
+        image: "https://api.screenshotmachine.com/?key=demo&url=https://myhealthform.vercel.app/&dimension=1280x720"
     },
     {
         title: {
@@ -369,7 +369,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Form Validation", "Data Processing", "UX/UI Design"],
         liveUrl: "https://wellness-checkup.vercel.app/",
         githubUrl: null,
-        image: null
+        image: "https://api.screenshotmachine.com/?key=demo&url=https://wellness-checkup.vercel.app/&dimension=1280x720"
     },
     {
         title: {
@@ -385,7 +385,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Custom Styling", "Data Persistence", "Medical Forms"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
         githubUrl: null,
-        image: null
+        image: "https://api.screenshotmachine.com/?key=demo&url=https://ainur-sherbakova.vercel.app/&dimension=1280x720"
     },
     {
         title: {
@@ -401,7 +401,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Data Visualization", "Tracking Systems"],
         liveUrl: "https://my-wellness-tracking.vercel.app/",
         githubUrl: null,
-        image: null
+        image: "https://api.screenshotmachine.com/?key=demo&url=https://my-wellness-tracking.vercel.app/&dimension=1280x720"
     }
 ];
 
@@ -1130,14 +1130,14 @@ function renderProjects() {
         const techTitle = getTranslation('projects.techTitle', translations[currentLanguage]) || 'Используемые технологии:';
         
         // Используем изображение проекта или градиент по умолчанию
-        // Для размытого эффекта используем CSS filter
-        const imageStyle = project.image 
-            ? `background-image: url('${project.image}'); background-size: cover; background-position: center;`
+        const hasImage = project.image && project.image.trim() !== '';
+        const imageStyle = hasImage 
+            ? `background-image: url('${project.image}');`
             : `background: linear-gradient(135deg, var(--primary), var(--accent));`;
         
         return `
             <div class="project-card" data-index="${index}">
-                <div class="project-image" style="${imageStyle}">
+                <div class="project-image ${hasImage ? 'has-image' : ''}" style="${imageStyle}">
                     <div class="project-image-overlay"></div>
                     ${buttons ? `<div class="project-overlay">${buttons}</div>` : ''}
                 </div>
