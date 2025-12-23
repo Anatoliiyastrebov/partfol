@@ -224,7 +224,7 @@
         <div class="container">
             <h2 class="section-title" data-i18n="contact.title">Связаться со мной</h2>
             <p class="section-description" data-i18n="contact.description">Есть проект или вопрос? Напишите мне, и я отвечу в ближайшее время. Готов обсудить вашу задачу и предложить решение.</p>
-            <p class="contact-gdpr-notice" data-i18n="contact.gdpr">Данные обрабатываются в соответствии с GDPR. Используя форму обратной связи, вы соглашаетесь с обработкой ваших данных.</p>
+            <p class="contact-gdpr-notice" data-i18n="contact.gdpr">Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.</p>
             <div class="contact-content">
                 <div class="contact-info">
                     <div class="contact-item">
@@ -274,6 +274,14 @@
                             <textarea data-i18n-placeholder="contact.form.message" placeholder="Сообщение" rows="5" required></textarea>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="checkbox-wrapper">
+                            <input type="checkbox" id="gdpr-consent" name="gdpr-consent" required>
+                            <label for="gdpr-consent" class="checkbox-label">
+                                <span data-i18n="contact.form.consent">Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.</span>
+                            </label>
+                        </div>
+                    </div>
                     <button type="submit" class="btn btn-primary contact-submit-btn" data-i18n="contact.form.submit">
                         <span class="btn-text">Отправить</span>
                         <span class="btn-icon">→</span>
@@ -290,7 +298,10 @@
                 <div class="footer-main">
                     <p class="footer-copyright">&copy; <span id="current-year">2024</span> <span data-i18n="footer.name">Анатолий Ястребов</span>. <span data-i18n="footer.rights">Все права защищены.</span></p>
                 </div>
-                <div class="footer-legal">
+                <div class="footer-legal-links">
+                    <a href="impressum.html" class="footer-link" data-i18n="footer.impressum">Impressum</a>
+                    <span> | </span>
+                    <a href="datenschutz.html" class="footer-link" data-i18n="footer.datenschutz">Datenschutzerklärung</a>
                 </div>
             </div>
         </div>

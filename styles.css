@@ -840,6 +840,53 @@ section {
     font-style: italic;
 }
 
+.contact-gdpr-notice a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: color var(--transition-base);
+}
+
+.contact-gdpr-notice a:hover {
+    color: var(--accent);
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-xs);
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--primary);
+    flex-shrink: 0;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: flex-start;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    cursor: pointer;
+    user-select: none;
+}
+
+.checkbox-label a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: color var(--transition-base);
+}
+
+.checkbox-label a:hover {
+    color: var(--accent);
+}
+
 .section-title.visible {
     opacity: 1;
     transform: translateY(0);
@@ -1621,6 +1668,100 @@ section {
     transform: translateX(5px);
 }
 
+/* ===== LEGAL PAGES ===== */
+.legal-page {
+    min-height: 100vh;
+    padding: 8rem 0 var(--spacing-2xl);
+    position: relative;
+}
+
+.legal-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: var(--spacing-2xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.legal-content h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-xl);
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.legal-content h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.legal-content h3 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.legal-content p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.legal-content ul {
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-lg);
+}
+
+.legal-content li {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.legal-content a {
+    color: var(--primary);
+    text-decoration: underline;
+    transition: color var(--transition-base);
+}
+
+.legal-content a:hover {
+    color: var(--accent);
+}
+
+.legal-footer {
+    margin-top: var(--spacing-2xl);
+    padding-top: var(--spacing-xl);
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.legal-footer a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: var(--font-weight-medium);
+    transition: color var(--transition-base);
+}
+
+.legal-footer a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+
 /* ===== FOOTER ===== */
 .footer {
     padding: var(--spacing-xl) 0;
@@ -1681,6 +1822,27 @@ section {
     flex-direction: column;
     gap: var(--spacing-xs);
     margin-top: var(--spacing-sm);
+}
+
+.footer-legal-links {
+    margin-top: var(--spacing-sm);
+    font-size: 0.85rem;
+}
+
+.footer-legal-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-base);
+}
+
+.footer-legal-links a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.footer-legal-links span {
+    color: var(--text-secondary);
+    margin: 0 var(--spacing-xs);
 }
 
 .footer-location {
@@ -2086,6 +2248,14 @@ section {
     }
     
     .footer-email {
+        font-size: 0.85rem;
+    }
+    
+    .legal-content {
+        padding: var(--spacing-lg);
+    }
+    
+    .checkbox-label {
         font-size: 0.85rem;
     }
 }

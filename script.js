@@ -85,7 +85,7 @@ const translations = {
         contact: {
             title: 'Связаться со мной',
             description: 'Есть проект или вопрос? Напишите мне, и я отвечу в ближайшее время. Готов обсудить вашу задачу и предложить решение.',
-            gdpr: 'Данные обрабатываются в соответствии с GDPR. Используя форму обратной связи, вы соглашаетесь с обработкой ваших данных.',
+            gdpr: 'Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.',
             email: {
                 label: 'Email'
             },
@@ -105,16 +105,16 @@ const translations = {
                 submitted: 'Отправлено! ✓',
                 sending: 'Отправка...',
                 error: 'Ошибка отправки',
-                notConfigured: 'Форма не настроена. Пожалуйста, настройте config.js'
+                notConfigured: 'Форма не настроена. Пожалуйста, настройте config.js',
+                consent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.',
+                consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
             }
         },
         footer: {
             name: 'Анатолий Ястребов',
             rights: 'Все права защищены.',
-            private: 'Это частный веб-сайт-портфолио. Для связи используйте форму обратной связи или email.',
-            contact: 'Контакт:',
-            location: '📍 Германия',
-            gdpr: 'Данные обрабатываются в соответствии с GDPR. Используя форму обратной связи, вы соглашаетесь с обработкой ваших данных.'
+            impressum: 'Impressum',
+            datenschutz: 'Datenschutzerklärung'
         }
     },
     en: {
@@ -212,24 +212,12 @@ const translations = {
                 label: 'GitHub',
                 value: 'github.com/username'
             },
-            form: {
-                name: 'Your Name',
-                email: 'Email',
-                message: 'Message',
-                submit: 'Send',
-                submitted: 'Sent! ✓',
-                sending: 'Sending...',
-                error: 'Sending error',
-                notConfigured: 'Form is not configured. Please configure config.js'
-            }
         },
         footer: {
             name: 'Anatolii Yastrebov',
             rights: 'All rights reserved.',
-            private: 'This is a private portfolio website. For contact, please use the contact form or email.',
-            contact: 'Contact:',
-            location: '📍 Germany',
-            gdpr: 'Data is processed in accordance with GDPR. By using the contact form, you agree to the processing of your data.'
+            impressum: 'Impressum',
+            datenschutz: 'Datenschutzerklärung'
         }
     },
     de: {
@@ -316,7 +304,19 @@ const translations = {
         contact: {
             title: 'Kontakt aufnehmen',
             description: 'Haben Sie ein Projekt oder eine Frage? Schreiben Sie mir und ich antworte so schnell wie möglich. Bereit, Ihre Aufgabe zu besprechen und eine Lösung vorzuschlagen.',
-            gdpr: 'Daten werden gemäß DSGVO verarbeitet. Durch die Nutzung des Kontaktformulars stimmen Sie der Verarbeitung Ihrer Daten zu.',
+            gdpr: 'Ihre Daten werden ausschließlich zur Beantwortung Ihrer Anfrage verwendet. Weitere Informationen finden Sie in unserer <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a>.',
+            form: {
+                name: 'Ihr Name',
+                email: 'E-Mail',
+                message: 'Nachricht',
+                submit: 'Senden',
+                submitted: 'Gesendet! ✓',
+                sending: 'Wird gesendet...',
+                error: 'Sendefehler',
+                notConfigured: 'Formular ist nicht konfiguriert. Bitte konfigurieren Sie config.js',
+                consent: 'Ich stimme der Verarbeitung meiner personenbezogenen Daten gemäß der <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Datenschutzerklärung</a> zu.',
+                consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
+            }
             email: {
                 label: 'E-Mail'
             },
@@ -328,24 +328,12 @@ const translations = {
                 label: 'GitHub',
                 value: 'github.com/username'
             },
-            form: {
-                name: 'Ihr Name',
-                email: 'E-Mail',
-                message: 'Nachricht',
-                submit: 'Senden',
-                submitted: 'Gesendet! ✓',
-                sending: 'Wird gesendet...',
-                error: 'Sendefehler',
-                notConfigured: 'Formular ist nicht konfiguriert. Bitte konfigurieren Sie config.js'
-            }
         },
         footer: {
             name: 'Anatolii Yastrebov',
             rights: 'Alle Rechte vorbehalten.',
-            private: 'Dies ist eine private Portfolio-Website. Für Kontakt verwenden Sie bitte das Kontaktformular oder E-Mail.',
-            contact: 'Kontakt:',
-            location: '📍 Deutschland',
-            gdpr: 'Daten werden gemäß DSGVO verarbeitet. Durch die Nutzung des Kontaktformulars stimmen Sie der Verarbeitung Ihrer Daten zu.'
+            impressum: 'Impressum',
+            datenschutz: 'Datenschutzerklärung'
         }
     }
 };
@@ -563,6 +551,24 @@ function updateLanguage(lang) {
             element.textContent = translation;
         }
     });
+    
+    // Update GDPR notice with HTML
+    const gdprNotice = document.querySelector('.contact-gdpr-notice');
+    if (gdprNotice) {
+        const gdprText = getTranslation('contact.gdpr', translations[lang]);
+        if (gdprText) {
+            gdprNotice.innerHTML = gdprText;
+        }
+    }
+    
+    // Update consent checkbox label
+    const consentLabel = document.querySelector('.checkbox-label span');
+    if (consentLabel) {
+        const consentText = getTranslation('contact.form.consent', translations[lang]);
+        if (consentText) {
+            consentLabel.innerHTML = consentText;
+        }
+    }
     
     // Update current year
     updateCurrentYear();
@@ -885,6 +891,17 @@ if (contactForm) {
             message: messageTextarea.value.trim()
         };
         
+        // Проверка согласия на обработку данных
+        const consentCheckbox = contactForm.querySelector('#gdpr-consent');
+        if (!consentCheckbox || !consentCheckbox.checked) {
+            const consentError = getTranslation('contact.form.consentError', translations[currentLanguage]) || 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.';
+            alert(consentError);
+            if (consentCheckbox) {
+                consentCheckbox.focus();
+            }
+            return;
+        }
+        
         // Валидация на клиенте
         if (!formData.name || !formData.email || !formData.message) {
             alert('Пожалуйста, заполните все поля');
@@ -949,6 +966,11 @@ if (contactForm) {
                 
                 // Сбрасываем форму
                 contactForm.reset();
+                // Сбрасываем чекбокс согласия
+                const consentCheckbox = contactForm.querySelector('#gdpr-consent');
+                if (consentCheckbox) {
+                    consentCheckbox.checked = false;
+                }
                 
                 // Восстанавливаем кнопку через 3 секунды
                 setTimeout(() => {
