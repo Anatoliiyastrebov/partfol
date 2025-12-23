@@ -478,7 +478,7 @@ body {
 .line-1 {
     display: block;
     opacity: 0;
-    animation: fadeInUp 0.8s ease forwards;
+    animation: fadeInUp 0.8s ease 0s forwards;
     word-wrap: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
@@ -489,6 +489,13 @@ body {
     box-sizing: border-box;
     contain: layout style;
     text-align: center;
+    color: var(--text-primary) !important;
+    font-size: inherit;
+    font-weight: var(--font-weight-normal);
+    -webkit-text-fill-color: var(--text-primary) !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
 }
 
 .line-2,
