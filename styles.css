@@ -1173,13 +1173,14 @@ section:not(.hero) {
     background: var(--bg-card);
     backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid var(--border);
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
-    transition: all var(--transition-base);
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     opacity: 0;
     transform: translateY(30px);
     position: relative;
     cursor: pointer;
+    will-change: transform;
 }
 
 .project-card::before {
@@ -1191,8 +1192,9 @@ section:not(.hero) {
     height: 100%;
     background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(236, 72, 153, 0.05));
     opacity: 0;
-    transition: opacity var(--transition-base);
+    transition: opacity 0.2s ease;
     z-index: 0;
+    pointer-events: none;
 }
 
 .project-card.visible {
@@ -1206,10 +1208,9 @@ section:not(.hero) {
 }
 
 .project-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     border-color: var(--primary);
-    box-shadow: var(--shadow-lg), var(--shadow-glow);
-    background: var(--bg-card-hover);
+    box-shadow: var(--shadow-md);
 }
 
 .project-image {
@@ -2035,7 +2036,7 @@ section:not(.hero) {
     }
     
     .skills-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .projects-grid {

@@ -1197,61 +1197,31 @@ function renderProjects() {
     const liveText = getTranslation('projects.live', translations[currentLanguage]) || 'Live версия';
     const githubText = getTranslation('projects.github', translations[currentLanguage]) || 'GitHub';
     
+    // Оптимизация: кэшируем переводы
+    const titleKey = currentLanguage;
+    const descKey = currentLanguage;
+    
     container.innerHTML = projectsData.map((project, index) => {
-        const projectTitle = typeof project.title === 'object' ? project.title[currentLanguage] || project.title.ru : project.title;
+        const projectTitle = project.title[titleKey] || project.title.ru;
         const projectShortDescription = project.shortDescription 
-            ? (typeof project.shortDescription === 'object' ? project.shortDescription[currentLanguage] || project.shortDescription.ru : project.shortDescription)
-            : (typeof project.description === 'object' ? project.description[currentLanguage] || project.description.ru : project.description).substring(0, 150) + '...';
+            ? (project.shortDescription[descKey] || project.shortDescription.ru)
+            : (project.description[descKey] || project.description.ru).substring(0, 120) + '...';
         const projectId = project.id || `project-${index}`;
         
-        // Используем изображение проекта или градиент по умолчанию
+        // Упрощенная обработка изображений
         const hasImage = project.image && project.image.trim() !== '';
-        let imageStyle = `background: linear-gradient(135deg, var(--primary), var(--accent));`;
+        const imageStyle = hasImage 
+            ? `background-image: url('${project.image.startsWith('/') ? project.image : '/' + project.image}'); background-size: cover; background-position: center;`
+            : `background: linear-gradient(135deg, var(--primary), var(--accent));`;
         
-        if (hasImage) {
-            // Проверяем, является ли это data URI, URL или локальный путь
-            if (project.image.startsWith('data:') || project.image.startsWith('http')) {
-                // Для внешних URL добавляем кэширование и обработку ошибок
-                imageStyle = `background-image: url('${project.image}'); background-size: cover; background-position: center; background-repeat: no-repeat;`;
-            } else {
-                // Локальный путь
-                const imagePath = project.image.startsWith('/') ? project.image : '/' + project.image;
-                imageStyle = `background-image: url('${imagePath}'); background-size: cover; background-position: center; background-repeat: no-repeat;`;
-            }
-        }
-        
-        // Показываем только первые 3 технологии на карточке
-        const visibleTechs = project.techStack.slice(0, 3);
-        
-        return `
-            <a href="project.html?id=${projectId}" class="project-card-link">
-                <div class="project-card" data-index="${index}" data-project-id="${projectId}">
-                    <div class="project-image ${hasImage ? 'has-image' : ''}" style="${imageStyle}">
-                        ${hasImage ? '<div class="project-image-overlay"></div>' : ''}
-                    </div>
-                    <div class="project-info">
-                        <h3>${projectTitle}</h3>
-                        <div class="project-description-wrapper">
-                            <p class="project-description">${projectShortDescription}</p>
-                        </div>
-                        <div class="project-tech-section">
-                            <div class="project-tags">
-                                ${visibleTechs.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                                ${project.techStack.length > 3 ? `<span class="tech-tag">+${project.techStack.length - 3}</span>` : ''}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        `;
+        return `<a href="project.html?id=${projectId}" class="project-card-link"><div class="project-card" data-index="${index}"><div class="project-image${hasImage ? ' has-image' : ''}" style="${imageStyle}"></div><div class="project-info"><h3>${projectTitle}</h3><p class="project-description">${projectShortDescription}</p></div></div></a>`;
     }).join('');
     
-    // Обновить наблюдатели для новых карточек
-    document.querySelectorAll('.project-card').forEach(card => {
-        projectObserver.observe(card);
+    // Оптимизация: используем requestAnimationFrame для батчинга наблюдений
+    requestAnimationFrame(() => {
+        const cards = container.querySelectorAll('.project-card');
+        cards.forEach(card => projectObserver.observe(card));
     });
-    
-    // Карточки теперь кликабельны через ссылки, обработчики не нужны
 }
 
 // Настройка интерактивности проектов
