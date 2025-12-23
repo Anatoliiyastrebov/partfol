@@ -382,6 +382,7 @@ body {
     flex-shrink: 0;
     overflow: hidden;
     position: relative;
+    z-index: 2;
     text-align: center;
     box-sizing: border-box;
     word-wrap: break-word;
