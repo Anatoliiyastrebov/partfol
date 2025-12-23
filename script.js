@@ -900,24 +900,17 @@ if (contactForm) {
         const button = contactForm.querySelector('button');
         const originalText = button.textContent;
         
-        // Получаем данные формы более надежным способом
+        // Получаем данные формы
         const nameInput = contactForm.querySelector('input[type="text"]');
         const emailInput = contactForm.querySelector('input[type="email"]');
         const messageTextarea = contactForm.querySelector('textarea');
+        const consentCheckbox = contactForm.querySelector('#gdpr-consent');
         
         if (!nameInput || !emailInput || !messageTextarea) {
-            alert('Ошибка: поля формы не найдены');
             return;
         }
         
-        const formData = {
-            name: nameInput.value.trim(),
-            email: emailInput.value.trim(),
-            message: messageTextarea.value.trim()
-        };
-        
         // Проверка согласия на обработку данных
-        const consentCheckbox = contactForm.querySelector('#gdpr-consent');
         if (!consentCheckbox || !consentCheckbox.checked) {
             const consentError = getTranslation('contact.form.consentError', translations[currentLanguage]) || 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.';
             alert(consentError);
@@ -927,136 +920,96 @@ if (contactForm) {
             return;
         }
         
-        // Валидация на клиенте
-        if (!formData.name || !formData.email || !formData.message) {
-            alert('Пожалуйста, заполните все поля');
-            return;
-        }
+        const formData = {
+            name: nameInput.value.trim(),
+            email: emailInput.value.trim(),
+            message: messageTextarea.value.trim()
+        };
         
-        // Дополнительная проверка длины
-        if (formData.name.length < 2) {
-            alert('Имя должно содержать минимум 2 символа');
-            return;
-        }
-        
-        if (formData.message.length < 5) {
-            alert('Сообщение должно содержать минимум 5 символов');
-            return;
-        }
-        
-        // Проверка email формата
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
-            alert('Пожалуйста, введите корректный email адрес');
-            return;
-        }
-        
-        // Блокируем кнопку
+        // Блокируем кнопку и показываем оптимистичный UI
         button.disabled = true;
-        const sendingText = getTranslation('contact.form.sending', translations[currentLanguage]);
         const btnText = button.querySelector('.btn-text');
         const btnIcon = button.querySelector('.btn-icon');
+        const sendingText = getTranslation('contact.form.sending', translations[currentLanguage]) || 'Отправка...';
+        const submittedText = getTranslation('contact.form.submitted', translations[currentLanguage]) || 'Отправлено! ✓';
         
         if (btnText) {
-            btnText.textContent = sendingText || 'Отправка...';
-        } else {
-            button.textContent = sendingText || 'Отправка...';
+            btnText.textContent = sendingText;
         }
-        
         if (btnIcon) {
             btnIcon.textContent = '⏳';
         }
+        
+        // Оптимистичный UI - показываем успех через 500ms (имитация быстрой отправки)
+        let optimisticTimeout = setTimeout(() => {
+            if (btnText) {
+                btnText.textContent = submittedText;
+            }
+            if (btnIcon) {
+                btnIcon.textContent = '✓';
+            }
+            button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+            
+            // Сбрасываем форму
+            contactForm.reset();
+            if (consentCheckbox) {
+                consentCheckbox.checked = false;
+            }
+        }, 500);
         
         try {
             // Отправляем данные на backend
             const result = await sendContactForm(formData);
             
+            clearTimeout(optimisticTimeout);
+            
             if (result.success) {
-                // Успешная отправка
-                const submittedText = getTranslation('contact.form.submitted', translations[currentLanguage]);
-                const btnText = button.querySelector('.btn-text');
-                const btnIcon = button.querySelector('.btn-icon');
-                
+                // Подтверждаем успех
                 if (btnText) {
-                    btnText.textContent = submittedText || 'Отправлено! ✓';
-                } else {
-                    button.textContent = submittedText || 'Отправлено! ✓';
+                    btnText.textContent = submittedText;
                 }
-                
                 if (btnIcon) {
                     btnIcon.textContent = '✓';
                 }
-                
                 button.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-                
-                // Сбрасываем форму
-                contactForm.reset();
-                // Сбрасываем чекбокс согласия
-                const consentCheckbox = contactForm.querySelector('#gdpr-consent');
-                if (consentCheckbox) {
-                    consentCheckbox.checked = false;
-                }
-                
-                // Восстанавливаем кнопку через 3 секунды
-                setTimeout(() => {
-                    button.disabled = false;
-                    if (btnText) {
-                        btnText.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
-                    } else {
-                        button.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
-                    }
-                    if (btnIcon) {
-                        btnIcon.textContent = '→';
-                    }
-                    button.style.background = '';
-                }, 3000);
             } else {
-                // Ошибка отправки
-                console.error('❌ Ошибка отправки формы:', result.message);
-                const btnText = button.querySelector('.btn-text');
-                const btnIcon = button.querySelector('.btn-icon');
-                
+                // Откатываем оптимистичный UI при ошибке
+                button.disabled = false;
                 if (btnText) {
-                    btnText.textContent = 'Ошибка';
-                } else {
-                    button.textContent = 'Ошибка';
+                    btnText.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
                 }
-                
                 if (btnIcon) {
-                    btnIcon.textContent = '✕';
+                    btnIcon.textContent = '→';
                 }
-                
-                button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-                
-                const errorMsg = result.message || 'Ошибка отправки сообщения. Убедитесь, что backend сервер запущен.';
-                alert(errorMsg);
-                
-                setTimeout(() => {
-                    button.disabled = false;
-                    if (btnText) {
-                        btnText.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
-                    } else {
-                        button.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
-                    }
-                    if (btnIcon) {
-                        btnIcon.textContent = '→';
-                    }
-                    button.style.background = '';
-                }, 5000);
+                button.style.background = '';
+                alert(result.message || 'Ошибка отправки сообщения');
+                return;
             }
         } catch (error) {
-            // Ошибка формы
-            button.textContent = originalText;
-            button.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
-            
-            const errorText = getTranslation('contact.form.error', translations[currentLanguage]);
-            alert(errorText || 'Произошла ошибка при отправке сообщения');
-            
-            setTimeout(() => {
-                button.style.background = '';
-                button.disabled = false;
-            }, 3000);
+            clearTimeout(optimisticTimeout);
+            button.disabled = false;
+            if (btnText) {
+                btnText.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
+            }
+            if (btnIcon) {
+                btnIcon.textContent = '→';
+            }
+            button.style.background = '';
+            alert('Произошла ошибка при отправке формы');
+            return;
         }
+        
+        // Восстанавливаем кнопку через 2 секунды
+        setTimeout(() => {
+            button.disabled = false;
+            if (btnText) {
+                btnText.textContent = getTranslation('contact.form.submit', translations[currentLanguage]) || 'Отправить';
+            }
+            if (btnIcon) {
+                btnIcon.textContent = '→';
+            }
+            button.style.background = '';
+        }, 2000);
     });
 }
 
