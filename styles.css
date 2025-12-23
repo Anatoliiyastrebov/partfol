@@ -491,12 +491,28 @@ body {
     text-align: center;
 }
 
-.line-2 {
+.line-2,
+.hero-name {
     display: block;
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    font-size: inherit;
+    font-weight: var(--font-weight-extrabold);
+    margin-bottom: var(--spacing-xs);
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.2s forwards;
+}
+
+.line-3,
+.typing-text {
+    display: block;
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: var(--spacing-xs);
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.3s forwards;
     word-wrap: break-word;
@@ -538,6 +554,20 @@ body {
 @keyframes blink {
     0%, 50% { opacity: 1; }
     51%, 100% { opacity: 0; }
+}
+
+.hero-role {
+    font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+    margin-bottom: var(--spacing-md);
+    padding: 0 var(--spacing-md);
+    line-height: 1.5;
+    color: var(--primary-light);
+    text-align: center;
+    font-weight: var(--font-weight-semibold);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.4s forwards;
 }
 
 .hero-subtitle {
@@ -705,7 +735,7 @@ section {
     font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: var(--font-weight-bold);
     text-align: center;
-    margin-bottom: var(--spacing-2xl);
+    margin-bottom: var(--spacing-md);
     background: linear-gradient(135deg, var(--primary), var(--accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -713,6 +743,18 @@ section {
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s ease;
+}
+
+.section-description {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--text-secondary);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+    padding: 0 var(--spacing-md);
 }
 
 .section-title.visible {
@@ -809,6 +851,25 @@ section {
 }
 
 /* ===== SKILLS SECTION ===== */
+.skills-categories {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+    width: 100%;
+}
+
+.category-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    text-align: center;
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -878,12 +939,18 @@ section {
     z-index: 1;
 }
 
-.skill-card h3 {
+.skill-card h3,
+.skill-card h4 {
     font-size: 1.5rem;
     margin-bottom: var(--spacing-sm);
     color: var(--text-primary);
     position: relative;
     z-index: 1;
+}
+
+.skill-card h4 {
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-semibold);
 }
 
 .skill-card p {
@@ -985,10 +1052,19 @@ section {
     opacity: 0;
     transition: opacity var(--transition-base);
     backdrop-filter: blur(5px);
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
 }
 
 .project-card:hover .project-overlay {
     opacity: 1;
+}
+
+.project-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .project-link {
@@ -1000,11 +1076,39 @@ section {
     border-radius: 10px;
     transition: all var(--transition-base);
     box-shadow: var(--shadow-md);
+    font-size: 0.9rem;
 }
 
 .project-link:hover {
     transform: scale(1.05);
     box-shadow: var(--shadow-lg);
+}
+
+.project-link-github {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+    border: 1px solid var(--border);
+}
+
+.project-link-github:hover {
+    border-color: var(--primary);
+    background: var(--bg-card-hover);
+}
+
+.project-link-github {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-card));
+    border: 1px solid var(--border);
+}
+
+.project-link-github:hover {
+    border-color: var(--primary);
+    background: var(--bg-card-hover);
+}
+
+.no-projects {
+    text-align: center;
+    padding: var(--spacing-2xl);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
 }
 
 .project-info {

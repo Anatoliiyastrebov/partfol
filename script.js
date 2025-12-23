@@ -13,17 +13,20 @@ const translations = {
         },
         hero: {
             greeting: 'Привет, я',
-            subtitle: 'Создаю впечатляющие веб-приложения с современными анимациями',
-            projectsBtn: 'Мои проекты',
+            name: 'Анатолий Ястребов',
+            role: 'Frontend / Fullstack веб-разработчик',
+            subtitle: 'Создаю современные веб-приложения и сайты для бизнеса. Специализируюсь на разработке удобных интерфейсов и функциональных решений.',
+            projectsBtn: 'Посмотреть проекты',
             contactBtn: 'Связаться'
         },
         typing: {
-            texts: ['Разработчик', 'Дизайнер', 'Креативщик']
+            texts: ['Frontend разработчик', 'Fullstack разработчик', 'Веб-разработчик']
         },
         about: {
             title: 'О себе',
-            text1: 'Я увлеченный разработчик, который создает красивые и функциональные веб-приложения. Моя цель - объединить креативность и технологии для создания незабываемого пользовательского опыта.',
-            text2: 'Специализируюсь на создании современных интерфейсов с плавными анимациями и интерактивными элементами.',
+            text1: 'Я веб-разработчик с практическим опытом создания сайтов и веб-приложений. Работаю как с фронтендом, так и с бэкендом, что позволяет создавать полноценные решения.',
+            text2: 'Специализируюсь на разработке веб-приложений, сайтов и пользовательских интерфейсов. Делаю акцент на качественный код, удобство использования и результат, который решает задачи клиента.',
+            text3: 'Работаю с различными технологиями и подхожу к каждому проекту индивидуально, учитывая потребности бизнеса и пользователей.',
             stats: {
                 projects: 'Проектов',
                 clients: 'Довольных клиентов',
@@ -32,50 +35,57 @@ const translations = {
         },
         skills: {
             title: 'Навыки',
+            category: {
+                frontend: 'Frontend',
+                backend: 'Backend',
+                tools: 'Инструменты'
+            },
             frontend: {
-                title: 'Frontend',
-                desc: 'HTML, CSS, JavaScript, React, Vue'
-            },
-            design: {
-                title: 'Дизайн',
-                desc: 'UI/UX, Figma, Adobe XD'
-            },
-            animations: {
-                title: 'Анимации',
-                desc: 'CSS Animations, GSAP, Framer Motion'
+                html: 'HTML / CSS',
+                htmlDesc: 'Семантическая разметка, адаптивная вёрстка',
+                js: 'JavaScript',
+                jsDesc: 'ES6+, DOM, асинхронность',
+                react: 'React',
+                reactDesc: 'Компоненты, хуки, состояние'
             },
             backend: {
-                title: 'Backend',
-                desc: 'Node.js, Python, Databases'
+                node: 'Node.js',
+                nodeDesc: 'Express, серверная разработка',
+                db: 'Базы данных',
+                dbDesc: 'MongoDB, SQL основы',
+                api: 'API',
+                apiDesc: 'REST, интеграции'
+            },
+            tools: {
+                git: 'Git / GitHub',
+                gitDesc: 'Версионирование, работа в команде',
+                design: 'Figma',
+                designDesc: 'Работа с макетами, UI/UX',
+                deploy: 'Деплой',
+                deployDesc: 'Vercel, Render, облачные сервисы'
             }
         },
         projects: {
             title: 'Проекты',
+            description: 'Примеры моих работ: веб-приложения, сайты и интерфейсы, которые я разработал',
             view: 'Посмотреть',
-            project1: {
-                title: 'E-Commerce Platform',
-                desc: 'Современная платформа для онлайн-торговли'
-            },
-            project2: {
-                title: 'Dashboard Analytics',
-                desc: 'Интерактивная панель аналитики'
-            },
-            project3: {
-                title: 'Mobile App',
-                desc: 'Кроссплатформенное мобильное приложение'
-            }
+            github: 'GitHub',
+            live: 'Live версия',
+            noProjects: 'Проекты будут добавлены в ближайшее время'
         },
         contact: {
             title: 'Связаться со мной',
+            description: 'Есть проект или вопрос? Напишите мне, и я отвечу в ближайшее время. Готов обсудить вашу задачу и предложить решение.',
             email: {
                 label: 'Email'
             },
-            phone: {
-                label: 'Телефон'
+            telegram: {
+                label: 'Telegram',
+                value: '@username'
             },
-            location: {
-                label: 'Локация',
-                value: 'Москва, Россия'
+            github: {
+                label: 'GitHub',
+                value: 'github.com/username'
             },
             form: {
                 name: 'Ваше имя',
@@ -105,17 +115,20 @@ const translations = {
         },
         hero: {
             greeting: 'Hello, I am',
-            subtitle: 'Creating impressive web applications with modern animations',
-            projectsBtn: 'My Projects',
+            name: 'Anatolii Yastrebov',
+            role: 'Frontend / Fullstack Web Developer',
+            subtitle: 'I create modern web applications and websites for businesses. I specialize in developing user-friendly interfaces and functional solutions.',
+            projectsBtn: 'View Projects',
             contactBtn: 'Get in Touch'
         },
         typing: {
-            texts: ['Developer', 'Designer', 'Creative']
+            texts: ['Frontend Developer', 'Fullstack Developer', 'Web Developer']
         },
         about: {
             title: 'About Me',
-            text1: 'I am a passionate developer who creates beautiful and functional web applications. My goal is to combine creativity and technology to create an unforgettable user experience.',
-            text2: 'I specialize in creating modern interfaces with smooth animations and interactive elements.',
+            text1: 'I am a web developer with practical experience in creating websites and web applications. I work with both frontend and backend, which allows me to create complete solutions.',
+            text2: 'I specialize in developing web applications, websites, and user interfaces. I focus on quality code, usability, and results that solve client problems.',
+            text3: 'I work with various technologies and approach each project individually, considering business and user needs.',
             stats: {
                 projects: 'Projects',
                 clients: 'Happy Clients',
@@ -124,50 +137,57 @@ const translations = {
         },
         skills: {
             title: 'Skills',
+            category: {
+                frontend: 'Frontend',
+                backend: 'Backend',
+                tools: 'Tools'
+            },
             frontend: {
-                title: 'Frontend',
-                desc: 'HTML, CSS, JavaScript, React, Vue'
-            },
-            design: {
-                title: 'Design',
-                desc: 'UI/UX, Figma, Adobe XD'
-            },
-            animations: {
-                title: 'Animations',
-                desc: 'CSS Animations, GSAP, Framer Motion'
+                html: 'HTML / CSS',
+                htmlDesc: 'Semantic markup, responsive layout',
+                js: 'JavaScript',
+                jsDesc: 'ES6+, DOM, asynchrony',
+                react: 'React',
+                reactDesc: 'Components, hooks, state'
             },
             backend: {
-                title: 'Backend',
-                desc: 'Node.js, Python, Databases'
+                node: 'Node.js',
+                nodeDesc: 'Express, server development',
+                db: 'Databases',
+                dbDesc: 'MongoDB, SQL basics',
+                api: 'API',
+                apiDesc: 'REST, integrations'
+            },
+            tools: {
+                git: 'Git / GitHub',
+                gitDesc: 'Version control, teamwork',
+                design: 'Figma',
+                designDesc: 'Working with layouts, UI/UX',
+                deploy: 'Deployment',
+                deployDesc: 'Vercel, Render, cloud services'
             }
         },
         projects: {
             title: 'Projects',
+            description: 'Examples of my work: web applications, websites, and interfaces I have developed',
             view: 'View',
-            project1: {
-                title: 'E-Commerce Platform',
-                desc: 'Modern platform for online trading'
-            },
-            project2: {
-                title: 'Dashboard Analytics',
-                desc: 'Interactive analytics dashboard'
-            },
-            project3: {
-                title: 'Mobile App',
-                desc: 'Cross-platform mobile application'
-            }
+            github: 'GitHub',
+            live: 'Live version',
+            noProjects: 'Projects will be added soon'
         },
         contact: {
             title: 'Get in Touch',
+            description: 'Have a project or question? Write to me and I will reply as soon as possible. Ready to discuss your task and suggest a solution.',
             email: {
                 label: 'Email'
             },
-            phone: {
-                label: 'Phone'
+            telegram: {
+                label: 'Telegram',
+                value: '@username'
             },
-            location: {
-                label: 'Location',
-                value: 'Moscow, Russia'
+            github: {
+                label: 'GitHub',
+                value: 'github.com/username'
             },
             form: {
                 name: 'Your Name',
@@ -197,17 +217,20 @@ const translations = {
         },
         hero: {
             greeting: 'Hallo, ich bin',
-            subtitle: 'Erstelle beeindruckende Webanwendungen mit modernen Animationen',
-            projectsBtn: 'Meine Projekte',
+            name: 'Anatolii Yastrebov',
+            role: 'Frontend / Fullstack Webentwickler',
+            subtitle: 'Ich erstelle moderne Webanwendungen und Websites für Unternehmen. Ich spezialisiere mich auf die Entwicklung benutzerfreundlicher Oberflächen und funktionaler Lösungen.',
+            projectsBtn: 'Projekte ansehen',
             contactBtn: 'Kontakt aufnehmen'
         },
         typing: {
-            texts: ['Entwickler', 'Designer', 'Kreativer']
+            texts: ['Frontend Entwickler', 'Fullstack Entwickler', 'Webentwickler']
         },
         about: {
             title: 'Über mich',
-            text1: 'Ich bin ein leidenschaftlicher Entwickler, der schöne und funktionale Webanwendungen erstellt. Mein Ziel ist es, Kreativität und Technologie zu kombinieren, um ein unvergessliches Benutzererlebnis zu schaffen.',
-            text2: 'Ich spezialisiere mich auf die Erstellung moderner Benutzeroberflächen mit flüssigen Animationen und interaktiven Elementen.',
+            text1: 'Ich bin ein Webentwickler mit praktischer Erfahrung in der Erstellung von Websites und Webanwendungen. Ich arbeite sowohl mit Frontend als auch mit Backend, was mir ermöglicht, vollständige Lösungen zu erstellen.',
+            text2: 'Ich spezialisiere mich auf die Entwicklung von Webanwendungen, Websites und Benutzeroberflächen. Ich lege Wert auf qualitativ hochwertigen Code, Benutzerfreundlichkeit und Ergebnisse, die Kundenprobleme lösen.',
+            text3: 'Ich arbeite mit verschiedenen Technologien und gehe individuell an jedes Projekt heran, wobei ich die Bedürfnisse des Unternehmens und der Benutzer berücksichtige.',
             stats: {
                 projects: 'Projekte',
                 clients: 'Zufriedene Kunden',
@@ -216,50 +239,57 @@ const translations = {
         },
         skills: {
             title: 'Fähigkeiten',
+            category: {
+                frontend: 'Frontend',
+                backend: 'Backend',
+                tools: 'Werkzeuge'
+            },
             frontend: {
-                title: 'Frontend',
-                desc: 'HTML, CSS, JavaScript, React, Vue'
-            },
-            design: {
-                title: 'Design',
-                desc: 'UI/UX, Figma, Adobe XD'
-            },
-            animations: {
-                title: 'Animationen',
-                desc: 'CSS Animationen, GSAP, Framer Motion'
+                html: 'HTML / CSS',
+                htmlDesc: 'Semantisches Markup, responsive Layout',
+                js: 'JavaScript',
+                jsDesc: 'ES6+, DOM, Asynchronität',
+                react: 'React',
+                reactDesc: 'Komponenten, Hooks, State'
             },
             backend: {
-                title: 'Backend',
-                desc: 'Node.js, Python, Datenbanken'
+                node: 'Node.js',
+                nodeDesc: 'Express, Serverentwicklung',
+                db: 'Datenbanken',
+                dbDesc: 'MongoDB, SQL Grundlagen',
+                api: 'API',
+                apiDesc: 'REST, Integrationen'
+            },
+            tools: {
+                git: 'Git / GitHub',
+                gitDesc: 'Versionskontrolle, Teamarbeit',
+                design: 'Figma',
+                designDesc: 'Arbeit mit Layouts, UI/UX',
+                deploy: 'Deployment',
+                deployDesc: 'Vercel, Render, Cloud-Services'
             }
         },
         projects: {
             title: 'Projekte',
+            description: 'Beispiele meiner Arbeit: Webanwendungen, Websites und Benutzeroberflächen, die ich entwickelt habe',
             view: 'Ansehen',
-            project1: {
-                title: 'E-Commerce Plattform',
-                desc: 'Moderne Plattform für Online-Handel'
-            },
-            project2: {
-                title: 'Dashboard Analytics',
-                desc: 'Interaktives Analytics-Dashboard'
-            },
-            project3: {
-                title: 'Mobile App',
-                desc: 'Plattformübergreifende mobile Anwendung'
-            }
+            github: 'GitHub',
+            live: 'Live-Version',
+            noProjects: 'Projekte werden in Kürze hinzugefügt'
         },
         contact: {
             title: 'Kontakt aufnehmen',
+            description: 'Haben Sie ein Projekt oder eine Frage? Schreiben Sie mir und ich antworte so schnell wie möglich. Bereit, Ihre Aufgabe zu besprechen und eine Lösung vorzuschlagen.',
             email: {
                 label: 'E-Mail'
             },
-            phone: {
-                label: 'Telefon'
+            telegram: {
+                label: 'Telegram',
+                value: '@username'
             },
-            location: {
-                label: 'Standort',
-                value: 'Moskau, Russland'
+            github: {
+                label: 'GitHub',
+                value: 'github.com/username'
             },
             form: {
                 name: 'Ihr Name',
@@ -356,6 +386,9 @@ function updateLanguage(lang) {
             element.placeholder = translation;
         }
     });
+    
+    // Re-render projects with new language
+    renderProjects();
     
     // Update title
     const titleTranslation = getTranslation('meta.title', translations[lang]);
@@ -887,6 +920,67 @@ rippleStyle.textContent = `
 `;
 document.head.appendChild(rippleStyle);
 
+// Структура проектов
+const projectsData = [
+    // Добавьте свои проекты здесь
+    // Пример:
+    // {
+    //     title: "Название проекта",
+    //     description: "Краткое описание - что это и для кого",
+    //     techStack: ["React", "Node.js", "MongoDB"],
+    //     liveUrl: "https://example.com", // или null
+    //     githubUrl: "https://github.com/username/project" // или null
+    // }
+];
+
+// Рендеринг проектов
+function renderProjects() {
+    const container = document.getElementById('projects-container');
+    if (!container) return;
+    
+    if (projectsData.length === 0) {
+        container.innerHTML = `
+            <div class="no-projects">
+                <p data-i18n="projects.noProjects">Проекты будут добавлены в ближайшее время</p>
+            </div>
+        `;
+        return;
+    }
+    
+    container.innerHTML = projectsData.map((project, index) => {
+        const liveButton = project.liveUrl 
+            ? `<a href="${project.liveUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-live" data-i18n="projects.live">Live версия</a>`
+            : '';
+        const githubButton = project.githubUrl
+            ? `<a href="${project.githubUrl}" target="_blank" rel="noopener noreferrer" class="project-link project-link-github" data-i18n="projects.github">GitHub</a>`
+            : '';
+        
+        const buttons = liveButton || githubButton 
+            ? `<div class="project-buttons">${liveButton}${githubButton}</div>`
+            : '';
+        
+        return `
+            <div class="project-card" data-index="${index}">
+                <div class="project-image" style="background: linear-gradient(135deg, var(--primary), var(--accent));">
+                    ${buttons ? `<div class="project-overlay">${buttons}</div>` : ''}
+                </div>
+                <div class="project-info">
+                    <h3>${project.title}</h3>
+                    <p>${project.description}</p>
+                    <div class="project-tags">
+                        ${project.techStack.map(tech => `<span>${tech}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+    }).join('');
+    
+    // Обновить наблюдатели для новых карточек
+    document.querySelectorAll('.project-card').forEach(card => {
+        projectObserver.observe(card);
+    });
+}
+
 // Smooth reveal animation for project cards
 const projectObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry, index) => {
@@ -898,7 +992,8 @@ const projectObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.project-card').forEach(card => {
-    projectObserver.observe(card);
+// Инициализация проектов при загрузке
+document.addEventListener('DOMContentLoaded', () => {
+    renderProjects();
 });
 
