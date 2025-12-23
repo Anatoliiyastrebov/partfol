@@ -1169,6 +1169,7 @@ function renderProjects() {
         return `
             <div class="project-card" data-index="${index}">
                 <div class="project-image ${hasImage ? 'has-image' : ''}" style="${imageStyle}">
+                    <div class="project-image-overlay"></div>
                     ${buttons ? `<div class="project-overlay">${buttons}</div>` : ''}
                 </div>
                 <div class="project-info">
