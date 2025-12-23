@@ -327,9 +327,9 @@ const projectsData = [
             de: "Gesundheitsfragebogen - Net Bolezny"
         },
         description: {
-            ru: "Веб-приложение для сбора информации о здоровье пациентов. Многоязычный интерфейс с удобной формой заполнения.",
-            en: "Web application for collecting patient health information. Multilingual interface with a convenient form.",
-            de: "Webanwendung zur Erfassung von Gesundheitsinformationen von Patienten. Mehrsprachige Benutzeroberfläche mit einem benutzerfreundlichen Formular."
+            ru: "Веб-приложение в котором я создал удобный и интуитивно понятный интерфейс веб-анкеты по здоровью. Обеспечил комфортный пользовательский путь и корректный сбор данных, уделяя внимание отзывчивости и UX.",
+            en: "Web application where I created a convenient and intuitive interface for a health questionnaire. Ensured a comfortable user journey and correct data collection, focusing on responsiveness and UX.",
+            de: "Webanwendung, in der ich eine benutzerfreundliche und intuitive Benutzeroberfläche für einen Gesundheitsfragebogen erstellt habe. Gewährleistete einen komfortablen Benutzerweg und korrekte Datenerfassung mit Fokus auf Reaktionsfähigkeit und UX."
         },
         techStack: ["HTML", "CSS", "JavaScript"],
         liveUrl: "https://net-bolezny.vercel.app/",
