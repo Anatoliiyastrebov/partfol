@@ -349,7 +349,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript (ES6+)", "Responsive Design", "Form Validation"],
         liveUrl: "https://net-bolezny.vercel.app/",
         githubUrl: null,
-        image: "images/projects/net-bolezny.png"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://net-bolezny.vercel.app/&viewport_width=1280&viewport_height=720&format=png&delay=3000"
     },
     {
         title: {
@@ -365,7 +365,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "i18n (Internationalization)", "Local Storage", "Responsive Design"],
         liveUrl: "https://myhealthform.vercel.app/",
         githubUrl: null,
-        image: "images/projects/myhealthform.png"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://myhealthform.vercel.app/&viewport_width=1280&viewport_height=720&format=png&delay=3000"
     },
     {
         title: {
@@ -381,7 +381,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Form Validation", "Data Processing", "UX/UI Design"],
         liveUrl: "https://wellness-checkup.vercel.app/",
         githubUrl: null,
-        image: "images/projects/wellness-checkup.png"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://wellness-checkup.vercel.app/&viewport_width=1280&viewport_height=720&format=png&delay=3000"
     },
     {
         title: {
@@ -397,7 +397,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Custom Styling", "Data Persistence", "Medical Forms"],
         liveUrl: "https://ainur-sherbakova.vercel.app/",
         githubUrl: null,
-        image: "images/projects/ainur-sherbakova.png"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://ainur-sherbakova.vercel.app/&viewport_width=1280&viewport_height=720&format=png&delay=3000"
     },
     {
         title: {
@@ -413,7 +413,7 @@ const projectsData = [
         techStack: ["HTML5", "CSS3", "JavaScript", "Local Storage", "Data Visualization", "Tracking Systems"],
         liveUrl: "https://my-wellness-tracking.vercel.app/",
         githubUrl: null,
-        image: "images/projects/my-wellness-tracking.png"
+        image: "https://api.screenshotone.com/take?access_key=demo&url=https://my-wellness-tracking.vercel.app/&viewport_width=1280&viewport_height=720&format=png&delay=3000"
     }
 ];
 
@@ -1152,11 +1152,12 @@ function renderProjects() {
         if (hasImage) {
             // Проверяем, является ли это data URI, URL или локальный путь
             if (project.image.startsWith('data:') || project.image.startsWith('http')) {
-                imageStyle = `background-image: url('${project.image}'); background-size: cover; background-position: center;`;
+                // Для внешних URL добавляем кэширование и обработку ошибок
+                imageStyle = `background-image: url('${project.image}'); background-size: cover; background-position: center; background-repeat: no-repeat;`;
             } else {
                 // Локальный путь
                 const imagePath = project.image.startsWith('/') ? project.image : '/' + project.image;
-                imageStyle = `background-image: url('${imagePath}'); background-size: cover; background-position: center;`;
+                imageStyle = `background-image: url('${imagePath}'); background-size: cover; background-position: center; background-repeat: no-repeat;`;
             }
         }
         
