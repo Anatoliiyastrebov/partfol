@@ -107,7 +107,7 @@ const translations = {
                 error: 'Ошибка отправки',
                 notConfigured: 'Форма не настроена. Пожалуйста, настройте config.js',
                 consent: 'Я согласен на обработку моих персональных данных в соответствии с <a href="datenschutz.html" target="_blank" rel="noopener noreferrer">Политикой конфиденциальности</a>.',
-                consentError: 'Bitte stimmen Sie der Verarbeitung Ihrer Daten zu.'
+                consentError: 'Пожалуйста, согласитесь на обработку ваших данных.'
             }
         },
         footer: {
