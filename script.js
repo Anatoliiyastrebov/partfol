@@ -90,6 +90,9 @@ const translations = {
             showMore: 'Показать все',
             showLess: 'Скрыть'
         },
+        project: {
+            back: '← Назад к проектам'
+        },
         contact: {
             title: 'Связаться со мной',
             description: 'Есть проект или вопрос? Напишите мне, и я отвечу в ближайшее время. Готов обсудить вашу задачу и предложить решение.',
@@ -174,7 +177,13 @@ const translations = {
                 js: 'JavaScript',
                 jsDesc: 'ES6+, DOM, asynchrony',
                 react: 'React',
-                reactDesc: 'Components, hooks, state'
+                reactDesc: 'Components, hooks, state',
+                responsive: 'Responsive Design',
+                responsiveDesc: 'Responsive layout for all devices',
+                validation: 'Form Validation',
+                validationDesc: 'Form and data validation',
+                uxui: 'UX/UI Design',
+                uxuiDesc: 'Interface and UX design'
             },
             backend: {
                 node: 'Node.js',
@@ -207,6 +216,9 @@ const translations = {
             readLess: 'Read less',
             showMore: 'Show all',
             showLess: 'Hide'
+        },
+        project: {
+            back: '← Back to Projects'
         },
         contact: {
             title: 'Get in Touch',
@@ -292,7 +304,13 @@ const translations = {
                 js: 'JavaScript',
                 jsDesc: 'ES6+, DOM, Asynchronität',
                 react: 'React',
-                reactDesc: 'Komponenten, Hooks, State'
+                reactDesc: 'Komponenten, Hooks, State',
+                responsive: 'Responsive Design',
+                responsiveDesc: 'Responsives Layout für alle Geräte',
+                validation: 'Formularvalidierung',
+                validationDesc: 'Validierung von Formularen und Daten',
+                uxui: 'UX/UI Design',
+                uxuiDesc: 'Interface- und UX-Design'
             },
             backend: {
                 node: 'Node.js',
@@ -325,6 +343,9 @@ const translations = {
             readLess: 'Weniger anzeigen',
             showMore: 'Alle anzeigen',
             showLess: 'Ausblenden'
+        },
+        project: {
+            back: '← Zurück zu den Projekten'
         },
         contact: {
             title: 'Kontakt aufnehmen',

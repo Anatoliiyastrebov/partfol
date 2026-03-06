@@ -1698,6 +1698,7 @@ section:not(.hero) {
     position: relative;
 }
 
+
 .legal-content {
     max-width: 800px;
     margin: 0 auto;
@@ -2434,6 +2435,7 @@ section:not(.hero) {
     .legal-content {
         padding: var(--spacing-lg);
     }
+
     
     .checkbox-label {
         font-size: 0.85rem;

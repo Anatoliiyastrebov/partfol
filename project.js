@@ -1,6 +1,44 @@
 // Wait for script.js to load and then initialize
 let checkCount = 0;
 const maxChecks = 20; // Maximum 1 second wait
+const projectPageI18n = {
+    ru: {
+        loadErrorTitle: 'Ошибка загрузки',
+        loadErrorText: 'Не удалось загрузить данные проектов. Пожалуйста, обновите страницу.',
+        backToProjects: 'Вернуться к проектам',
+        projectNotSpecifiedTitle: 'Проект не указан',
+        projectNotSpecifiedText: 'Не указан ID проекта в URL.',
+        projectNotFoundTitle: 'Проект не найден',
+        projectNotFoundText: (id) => `Проект с ID "${id}" не существует.`
+    },
+    en: {
+        loadErrorTitle: 'Loading Error',
+        loadErrorText: 'Could not load project data. Please refresh the page.',
+        backToProjects: 'Back to Projects',
+        projectNotSpecifiedTitle: 'Project Not Specified',
+        projectNotSpecifiedText: 'No project ID was provided in the URL.',
+        projectNotFoundTitle: 'Project Not Found',
+        projectNotFoundText: (id) => `Project with ID "${id}" does not exist.`
+    },
+    de: {
+        loadErrorTitle: 'Ladefehler',
+        loadErrorText: 'Projektdaten konnten nicht geladen werden. Bitte aktualisieren Sie die Seite.',
+        backToProjects: 'Zurück zu den Projekten',
+        projectNotSpecifiedTitle: 'Projekt nicht angegeben',
+        projectNotSpecifiedText: 'In der URL wurde keine Projekt-ID angegeben.',
+        projectNotFoundTitle: 'Projekt nicht gefunden',
+        projectNotFoundText: (id) => `Projekt mit der ID "${id}" existiert nicht.`
+    }
+};
+
+function getProjectPageText(lang, key, ...args) {
+    const selectedLang = projectPageI18n[lang] ? lang : 'ru';
+    const value = projectPageI18n[selectedLang][key];
+    if (typeof value === 'function') {
+        return value(...args);
+    }
+    return value || projectPageI18n.ru[key];
+}
 
 function waitForScripts() {
     checkCount++;
@@ -12,11 +50,12 @@ function waitForScripts() {
         setTimeout(waitForScripts, 50);
     } else {
         // Timeout - show error
+        const language = localStorage.getItem('language') || 'ru';
         document.getElementById('project-content').innerHTML = `
             <div class="project-not-found">
-                <h1>Ошибка загрузки</h1>
-                <p>Не удалось загрузить данные проектов. Пожалуйста, обновите страницу.</p>
-                <a href="index.html#projects" class="btn btn-primary">Вернуться к проектам</a>
+                <h1>${getProjectPageText(language, 'loadErrorTitle')}</h1>
+                <p>${getProjectPageText(language, 'loadErrorText')}</p>
+                <a href="index.html#projects" class="btn btn-primary">${getProjectPageText(language, 'backToProjects')}</a>
             </div>
         `;
     }
@@ -38,9 +77,9 @@ function initProjectPage() {
     if (projectsData.length === 0) {
         document.getElementById('project-content').innerHTML = `
             <div class="project-not-found">
-                <h1>Ошибка загрузки</h1>
-                <p>Не удалось загрузить данные проектов. Пожалуйста, обновите страницу.</p>
-                <a href="index.html#projects" class="btn btn-primary">Вернуться к проектам</a>
+                <h1>${getProjectPageText(currentLanguage, 'loadErrorTitle')}</h1>
+                <p>${getProjectPageText(currentLanguage, 'loadErrorText')}</p>
+                <a href="index.html#projects" class="btn btn-primary">${getProjectPageText(currentLanguage, 'backToProjects')}</a>
             </div>
         `;
         return;
@@ -56,9 +95,9 @@ function initProjectPage() {
     if (!projectId) {
         document.getElementById('project-content').innerHTML = `
             <div class="project-not-found">
-                <h1>Проект не указан</h1>
-                <p>Не указан ID проекта в URL.</p>
-                <a href="index.html#projects" class="btn btn-primary">Вернуться к проектам</a>
+                <h1>${getProjectPageText(currentLanguage, 'projectNotSpecifiedTitle')}</h1>
+                <p>${getProjectPageText(currentLanguage, 'projectNotSpecifiedText')}</p>
+                <a href="index.html#projects" class="btn btn-primary">${getProjectPageText(currentLanguage, 'backToProjects')}</a>
             </div>
         `;
         return;
@@ -70,9 +109,9 @@ function initProjectPage() {
     if (!project) {
         document.getElementById('project-content').innerHTML = `
             <div class="project-not-found">
-                <h1>Проект не найден</h1>
-                <p>Проект с ID "${projectId}" не существует.</p>
-                <a href="index.html#projects" class="btn btn-primary">Вернуться к проектам</a>
+                <h1>${getProjectPageText(currentLanguage, 'projectNotFoundTitle')}</h1>
+                <p>${getProjectPageText(currentLanguage, 'projectNotFoundText', projectId)}</p>
+                <a href="index.html#projects" class="btn btn-primary">${getProjectPageText(currentLanguage, 'backToProjects')}</a>
             </div>
         `;
     } else {
@@ -171,7 +210,7 @@ function setupLanguageSwitcher(project, currentLanguage, translations) {
             btn.classList.add('active');
             
             renderProject(project, currentLanguage, translations);
-            updateLanguage(currentLanguage, translations);
+            updateProjectStaticLanguage(currentLanguage, translations);
         });
     });
     
@@ -182,10 +221,10 @@ function setupLanguageSwitcher(project, currentLanguage, translations) {
         }
     });
     
-    updateLanguage(currentLanguage, translations);
+    updateProjectStaticLanguage(currentLanguage, translations);
 }
 
-function updateLanguage(currentLanguage, translations) {
+function updateProjectStaticLanguage(currentLanguage, translations) {
     if (!translations || !translations[currentLanguage]) return;
     
     // Update navigation and other elements
